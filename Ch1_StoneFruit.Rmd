@@ -1,0 +1,758 @@
+---
+title: "Stonefruit_Chapter1"
+author: "MInuka"
+date: "2024-07-19"
+output: html_document
+---
+
+Metadata and Sampling Counts
+
+```{r}
+#Remove unncessary PS objects first to start ITS1 workflow 
+
+rm(PS_16S_BC_ON,PS_16S_BC_ON_BB,PS_16S_BC_ON_SF,PS_16S_Global)
+
+
+m_ITS1R_BC_ON_SF<-meta(PS_ITS1R_BC_ON_SF)
+
+meta_global
+
+m_ITS1R_BC_SF<-meta(subset_samples(PS_ITS1R_BC_ON_SF,Province =="BC"))
+
+#Saving metadata to create visualizations
+write.csv(m_ITS1R_BC_SF, file="D:\\Grad_School\\Grad_Project\\Outputs\\Metadata\\metadata_ITS1R_BC_SF.csv")
+
+m_ITS1R_ON_SF<-meta(subset_samples(PS_ITS1R_BC_ON_SF,Province =="ON"))
+
+
+write.csv(m_ITS1R_ON_SF, file="D:\\Grad_School\\Grad_Project\\Outputs\\Metadata\\metadata_ITS1R_ON_SF.csv")
+
+```
+
+------------- Section 1 : Fungal Detections in Stone Fruit Farms ---------------------------
+
+Check the read depth 
+Check for singletons 
+```{r}
+
+#load
+load("D:\\Grad_School\\R_Projects\\BeeProject_Metagenomics\\Images\\Setup.RData")
+
+PS_ITS1R_BC_ON_SF
+meta(PS_ITS1R_BC_ON_SF)
+#Read depth analysis for original samples
+Read_Depth_PS_ITS1R_BC_ON_SF<-plot_read_distribution(PS_ITS1R_BC_ON_SF, groups = "Province", 
+                             plot.type = "histogram")+
+  theme_biome_utils()+
+  scale_x_continuous(trans='log10')+
+  scale_fill_manual(values=c("#111111"))+ 
+  geom_vline(xintercept = 1000, colour = "black", linetype="dashed")+
+  theme(legend.position="none")+
+  labs(x = "", y = "Count")
+
+Read_Depth_PS_ITS1R_BC_ON_SF
+
+PS_ITS1R_BC_ON_SF
+summarize_phyloseq(PS_ITS1R_BC_ON_SF)
+
+#Number of singletons = 4563
+
+#We need to remove the so we remove any taxa sums that are less than 10 reads 
+PS_ITS1R_BC_ON_SF_Pruned = prune_taxa(taxa_sums(PS_ITS1R_BC_ON_SF) > 02, PS_ITS1R_BC_ON_SF)
+
+PS_ITS1R_BC_ON_SF_Pruned
+
+summarize_phyloseq(PS_ITS1R_BC_ON_SF_Pruned)
+
+meta(PS_ITS1R_BC_ON_SF_Pruned)
+
+temp_taxtable_investigate_ecoli <- as.data.frame(phyloseq::tax_table(PS_16S_BC_ON))
+
+temp_taxtable_investigate_ecoli
+```
+
+
+Check for Ubiquitous Fungi and remove them 
+```{r Removal and Reabundance - BCC, echo=FALSE, eval=TRUE, include=FALSE, cache=TRUE}
+
+top_taxa(PS_ITS1R_BC_ON_SF_Pruned)
+
+classtaxa_ITS1R_BC_ON_SF_Pruned <- get_taxadf(obj=PS_ITS1R_BC_ON_SF_Pruned, taxlevel=7)
+# The 30 most abundant taxonomy will be visualized by default (parameter `topn=30`). 
+TopTaxa_ITS1R_BC_ON_SF_Pruned<- ggbartax(obj=classtaxa_ITS1R_BC_ON_SF_Pruned, 
+                   facetNames="Province", 
+                   plotgroup=TRUE, 
+                   topn=50) +
+  xlab(NULL) +
+  ylab("Relative abundance (%)") +
+  guides(fill= guide_legend(keywidth = 0.5, keyheight = 0.5, ncol=4))
+
+PS_ITS1R_BC_ON_SF_Pruned
+TopTaxa_ITS1R_BC_ON_SF_Pruned
+
+#Take a closer look at the species we can remove by creating a taxa table
+Taxa_Table_ITS1R_BC_ON_SF_Pruned<- as.data.frame(phyloseq::tax_table(PS_ITS1R_BC_ON_SF_Pruned))
+
+Taxa_Table_ITS1R_BC_ON_SF_Pruned
+
+# Removal of ubiqitous species and unknown phylums 
+PS_ITS1R_BC_ON_SF_Pruned
+
+PS_ITS1R_BC_ON_SF_Filtered <- subset_taxa(PS_ITS1R_BC_ON_SF_Pruned, Species !="Cladosporium_herbarum")
+PS_ITS1R_BC_ON_SF_Filtered <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Species !="Cladosporium_sp")
+PS_ITS1R_BC_ON_SF_Filtered <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Class!="Saccharomycetes")
+PS_ITS1R_BC_ON_SF_Filtered <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Phylum!="N/A")
+
+PS_ITS1R_BC_ON_SF_Filtered
+
+### Did removal work ###
+
+classtaxa_ITS1R_BC_ON_SF_Filtered <- get_taxadf(obj=PS_ITS1R_BC_ON_SF_Filtered, taxlevel=7)
+# The 30 most abundant taxonomy will be visualized by default (parameter `topn=30`). 
+TopTaxa_ITS1R_BC_ON_SF_Filtered<- ggbartax(obj=classtaxa_ITS1R_BC_ON_SF_Filtered, 
+                   facetNames="Province", 
+                   plotgroup=TRUE, 
+                   topn=50) +
+  xlab(NULL) +
+  ylab("Relative abundance (%)") +
+  guides(fill= guide_legend(keywidth = 0.5, keyheight = 0.5, ncol=4))
+
+TopTaxa_ITS1R_BC_ON_SF_Filtered
+
+```
+
+Diversity analysis 
+```{r Alpha , Shannon and Pileou Analysis}
+
+PS_ITS1R_BC_ON_SF_Filtered
+# Alpha diversity -> microbiotaprocess    #####
+
+alphaobj_Stonefruit<- get_alphaindex(PS_ITS1R_BC_ON_SF_Filtered)
+#alphaobj2_PS_Global<-as.data.frame(alphaobj_PS_Global)
+#head(alphaobj2_PS_Global)
+
+##### violon_plots (Status) ######
+
+Observe_status <- ggbox(alphaobj_Stonefruit, 
+                        geom="violin", 
+                        factorNames="Province",   
+                        compare = TRUE,
+                        testmethod = "wilcox.test",
+                        signifmap = TRUE,
+                        indexNames="Observe")+ 
+  theme(aspect.ratio = 0.5)+
+  theme( legend.position="none")+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#999999",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+                                      
+Shannon_status<- ggbox(alphaobj_Stonefruit, 
+                       geom="violin", 
+                       factorNames="Province",   
+                       compare = TRUE, 
+                       testmethod = "wilcox.test",
+                       signifmap = TRUE,
+                       indexNames="Shannon")+ 
+  theme(legend.position="Bottom")+
+  theme(aspect.ratio = 0.5)+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#999999",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+                                      
+
+Pielou_status<- ggbox(alphaobj_Stonefruit, 
+                      geom="violin", 
+                      factorNames="Province",   
+                      compare = TRUE, 
+                      testmethod = "wilcox.test",
+                      signifmap = TRUE,
+                      indexNames="Pielou")+ 
+  theme(legend.position="Bottom")+
+  theme(aspect.ratio = 0.5)+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#999999",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+                                      
+plot_grid(Observe_status+theme(legend.position="none"),
+          Shannon_status+theme(legend.position="none"),
+          align="vh",
+          labels = c("A", "B"),
+          hjust = -1,
+          vjust= 3.5,
+          ncol=1)
+
+
+plot_grid(Observe_status+theme(legend.position="none"),
+          Shannon_status+theme(legend.position="none"),
+          Pielou_status+theme(legend.position="none"),
+          align="vh",
+          labels = c("A", "B", 'C'),
+          hjust = -1,
+          vjust= 3.5,
+          ncol=1)
+
+```
+
+General Heat Map 
+
+```{r Heat Map }
+
+#General HeatMap 
+
+Meco_SF <- phyloseq2meco(PS_ITS1R_BC_ON_SF_Filtered)
+
+Heatmap_SF <- trans_abund$new(dataset = Meco_SF, 
+
+                      taxrank = "Species", 
+
+                      ntaxa = 100)
+
+Heatmap_SF$plot_heatmap(facet = c("Province","Sample.type"),
+                color_values = rev(RColorBrewer::brewer.pal(n = 11, 
+                                                            name = "Spectral")),
+                xtext_keep = FALSE, 
+                withmargin = TRUE)
+
+#BC and ON stone fruit separated metadata
+PS_BC_Only_SF <- subset_samples(PS_BC_ON_SF, Province == "BC")
+
+meta(PS_BC_Only_SF)
+#82 Rows for the BC subset 
+
+PS_ON_Only_SF <- subset_samples(PS_BC_ON_SF, Province == "ON")
+
+meta(PS_ON_Only_SF)
+#56 Rows
+
+```
+
+Specific Pathogen Screening
+
+Penicillium Expansum 
+```{r Stone fruits - ON and BC -  Penicillium Expansum - Blue Mold  ,echo=FALSE}
+
+PS_ITS1R_Penicillium <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Genus == "Penicillium")
+
+plot_tree(tax_glom(PS_ITS1R_Penicillium, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="Plant", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+```
+
+ALternaria Prunicola
+```{r Stone fruits - ALternaria Prunicola }
+PS_ITS1R_Pleosporaceae <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Family =="Pleosporaceae")
+
+summarize_phyloseq(PS_ITS1R_Pleosporaceae)
+
+plot_tree(tax_glom(PS_ITS1R_Pleosporaceae, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="Plant", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Location",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+##HEATMAP
+meco_ITS2_BC_ON_SF_Pleosporaceae<- phyloseq2meco(PS_ITS2_BC_ON_SF_Pleosporaceae)
+
+ 
+b1_ITS2_BC_ON_SF_Pleosporaceae <- trans_abund$new(dataset = meco_ITS2_BC_ON_SF_Pleosporaceae, 
+
+                      taxrank = "Species", 
+
+                      ntaxa = 8)
+
+b1_ITS2_BC_ON_SF_Pleosporaceae$plot_heatmap(facet = c("Province","Sample.type"),
+                color_values = rev(RColorBrewer::brewer.pal(n = 11, 
+                                                            name = "Spectral")),
+                xtext_keep = FALSE, 
+                withmargin = TRUE)
+
+```
+
+```{r Stone fruits - ON and BC -  Monilinia Group}
+PS_ITS1R_Pleosporaceae <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Family =="Sclerotiniaceae")
+
+summarize_phyloseq(PS_ITS1R_Pleosporaceae)
+
+plot_tree(tax_glom(PS_ITS1R_Pleosporaceae, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="Sample.type", 
+          label.tips="Species", 
+          text.size=5, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+
+meco_ITS2_BC_ON_SF_Sclerotiniaceae<- phyloseq2meco(PS_ITS2_BC_ON_SF_Sclerotiniaceae)
+
+ 
+ITS2_BC_ON_SF_Sclerotiniaceae <- trans_abund$new(dataset = meco_ITS2_BC_ON_SF_Sclerotiniaceae, 
+
+                      taxrank = "Species", 
+
+                      ntaxa = 15)
+
+ITS2_BC_ON_SF_Sclerotiniaceae$plot_heatmap(facet = c("Province","Sample.type"),
+                color_values = rev(RColorBrewer::brewer.pal(n = 11, 
+                                                            name = "Spectral")),
+                xtext_keep = FALSE, 
+                withmargin = TRUE)
+
+summarize_phyloseq(PS_ITS2_BC_ON_SF_Sclerotiniaceae)
+
+```
+
+```{r Stone fruits - ON and BC -  Podosphaera Leucotricha  }
+
+PS_ITS2_BC_ON_SF_Erysiphaceae <- subset_taxa(PS_BC_ON_SF, Family == "Erysiphaceae")
+
+plot_tree(tax_glom(PS_ITS2_BC_ON_SF_Erysiphaceae, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="Plant", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+
+##HEATMAP
+meco_ITS2_BC_ON_SF_Erysiphaceae<- phyloseq2meco(PS_ITS2_BC_ON_SF_Erysiphaceae)
+
+ 
+b1_ITS2_BC_ON_SF_Erysiphaceae <- trans_abund$new(dataset = meco_ITS2_BC_ON_SF_Erysiphaceae, 
+
+                      taxrank = "Species", 
+
+                      ntaxa = 8)
+
+b1_ITS2_BC_ON_SF_Erysiphaceae$plot_heatmap(facet = c("Province","Sample.type"),
+                color_values = rev(RColorBrewer::brewer.pal(n = 11, 
+                                                            name = "Spectral")),
+                xtext_keep = FALSE, 
+                withmargin = TRUE)
+```
+
+```{r Stone fruits - ON and BC -  Cytospora Cinnaem }
+
+Valsaceae family
+
+
+PS_ITS1R_Cytospora <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Genus == "Cytospora")
+
+plot_tree(tax_glom(PS_ITS1R_Cytospora, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="Sample.type", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+
+##HEATMAP
+meco_ITS1R_Cytospora<- phyloseq2meco(PS_ITS1R_Cytospora)
+
+ 
+b1_ITS1R_Cytospora <- trans_abund$new(dataset = meco_ITS1R_Cytospora, 
+
+                      taxrank = "Species", 
+
+                      ntaxa = 8)
+
+b1_ITS1R_Cytospora$plot_heatmap(facet = c("Province","Plant","Sample.type"),
+                color_values = rev(RColorBrewer::brewer.pal(n = 11, 
+                                                            name = "Spectral")),
+                xtext_keep = FALSE, 
+                withmargin = TRUE)
+
+
+metadata_BC_ON_SF <- meta(PS_BC_ON_SF)
+
+metadata_BC_ON_SF
+```
+
+```{r Stone fruits - ON and BC -  Ascosphaera Apis}
+
+##BEE PATHOGENS
+
+PS_ITS2_BC_ON_SF_Ascosphaeraceae <- subset_taxa(PS_BC_ON_SF, Family == "Ascosphaeraceae")
+
+plot_tree(tax_glom(PS_ITS2_BC_ON_SF_Ascosphaeraceae, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="Plant", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+
+
+##HEATMAP
+meco_ITS2_BC_ON_SF_Ascosphaeraceae<- phyloseq2meco(PS_ITS2_BC_ON_SF_Ascosphaeraceae)
+
+ 
+b1_ITS2_BC_ON_SF_Ascosphaeraceae <- trans_abund$new(dataset = meco_ITS2_BC_ON_SF_Ascosphaeraceae, 
+
+                      taxrank = "Species", 
+
+                      ntaxa = 10)
+
+b1_ITS2_BC_ON_SF_Ascosphaeraceae$plot_heatmap(facet = c("Province","Plant","Sample.type"),
+                color_values = rev(RColorBrewer::brewer.pal(n = 11, 
+                                                            name = "Spectral")),
+                xtext_keep = FALSE, 
+                withmargin = TRUE)
+
+```
+
+```{r  Stone fruits - ON and BC -  Betssia Alvei}
+
+PS_ITS2_BC_ON_SF_Pseudeurotiaceae <- subset_taxa(PS_BC_ON_SF, Family == "Pseudeurotiaceae")
+
+plot_tree(tax_glom(PS_ITS2_BC_ON_SF_Pseudeurotiaceae, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="Plant", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+
+
+##HEATMAP
+meco_ITS2_BC_ON_SF_Pseudeurotiaceae<- phyloseq2meco(PS_ITS2_BC_ON_SF_Pseudeurotiaceae)
+
+ 
+b1_ITS2_BC_ON_SF_Pseudeurotiaceae<- trans_abund$new(dataset = meco_ITS2_BC_ON_SF_Pseudeurotiaceae, 
+
+                      taxrank = "Species", 
+
+                      ntaxa = 10)
+
+b1_ITS2_BC_ON_SF_Pseudeurotiaceae$plot_heatmap(facet = c("Province","Plant","Sample.type"),
+                color_values = rev(RColorBrewer::brewer.pal(n = 11, 
+                                                            name = "Spectral")),
+                xtext_keep = FALSE, 
+                withmargin = TRUE)
+
+
+```
+
+------------- Section 2 : Bacterial Detections in Stone Fruit Farms ---------------------------
+
+Check the read depth 
+Check for singletons 
+```{r}
+
+#load
+load("D:\\Grad_School\\R_Projects\\BeeProject_Metagenomics\\Images\\Setup.RData")
+
+PS_16S_BC_ON_SF
+
+meta_16S <- meta(PS_16S_BC_ON_SF)
+
+temp_ITS1R <-meta(PS_ITS1R_BC_ON_SF)
+#Read depth analysis for original samples
+Read_Depth_PS_16S_BC_ON_SF<-plot_read_distribution(PS_16S_BC_ON_SF_Pruned, groups = "Province", 
+                             plot.type = "histogram")+
+  theme_biome_utils()+
+  scale_x_continuous(trans='log10')+
+  scale_fill_manual(values=c("#111111"))+ 
+  geom_vline(xintercept = 500, colour = "black", linetype="dashed")+
+  theme(legend.position="none")+
+  labs(x = "", y = "Count")
+
+Read_Depth_PS_16S_BC_ON_SF
+
+
+summarize_phyloseq(PS_16S_BC_ON_SF)
+
+#Number of singletons = 4563
+
+#We need to remove the so we remove any taxa sums that are less than 10 reads 
+PS_16S_BC_ON_SF_Pruned = prune_taxa(taxa_sums(PS_16S_BC_ON_SF) > 01, PS_16S_BC_ON_SF)
+
+PS_16S_BC_ON_SF_Pruned
+
+summarize_phyloseq(PS_16S_BC_ON_SF_Pruned)
+```
+Diversity analysis 
+```{r Alpha , Shannon and Pileou Analysis}
+
+PS_PS_16S_BC_ON_SF_Filtered
+# Alpha diversity -> microbiotaprocess    #####
+
+alphaobj_16S_Stonefruit<- get_alphaindex(PS_16S_BC_ON_SF_Pruned)
+#alphaobj2_PS_Global<-as.data.frame(alphaobj_PS_Global)
+#head(alphaobj2_PS_Global)
+
+##### violon_plots (Status) ######
+
+Observe_status <- ggbox(alphaobj_16S_Stonefruit, 
+                        geom="violin", 
+                        factorNames="Province",   
+                        compare = TRUE,
+                        testmethod = "wilcox.test",
+                        signifmap = TRUE,
+                        indexNames="Observe")+ 
+  theme(aspect.ratio = 0.5)+
+  theme( legend.position="none")+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#999999",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+                                      
+Shannon_status<- ggbox(alphaobj_16S_Stonefruit, 
+                       geom="violin", 
+                       factorNames="Province",   
+                       compare = TRUE, 
+                       testmethod = "wilcox.test",
+                       signifmap = TRUE,
+                       indexNames="Shannon")+ 
+  theme(legend.position="Bottom")+
+  theme(aspect.ratio = 0.5)+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#999999",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+                                      
+
+Pielou_status<- ggbox(alphaobj_16S_Stonefruit, 
+                      geom="violin", 
+                      factorNames="Province",   
+                      compare = TRUE, 
+                      testmethod = "wilcox.test",
+                      signifmap = TRUE,
+                      indexNames="Pielou")+ 
+  theme(legend.position="Bottom")+
+  theme(aspect.ratio = 0.5)+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#999999",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+
+
+plot_grid(Observe_status+theme(legend.position="none"),
+          Shannon_status+theme(legend.position="none"),
+          align="vh",
+          labels = c("A", "B"),
+          hjust = -1,
+          vjust= 3.5,
+          ncol=1)      
+                                
+
+plot_grid(Observe_status+theme(legend.position="none"),
+          Shannon_status+theme(legend.position="none"),
+          Pielou_status+theme(legend.position="none"),
+          align="vh",
+          labels = c("A", "B", 'C'),
+          hjust = -1,
+          vjust= 3.5,
+          ncol=1)
+
+```
+Check for Ubiquitous Fungi and remove them 
+```{r Removal and Reabundance - BCC, echo=FALSE, eval=TRUE, include=FALSE, cache=TRUE}
+
+top_taxa(PS_16S_BC_ON_SF_Pruned)
+
+classtaxa_16S_BC_ON_SF_Pruned<- get_taxadf(obj=PS_16S_BC_ON_SF_Pruned, taxlevel=7)
+# The 30 most abundant taxonomy will be visualized by default (parameter `topn=30`). 
+TopTaxa_16S_BC_ON_SF_Pruned<- ggbartax(obj=classtaxa_16S_BC_ON_SF_Pruned, 
+                   facetNames="Province", 
+                   plotgroup=TRUE, 
+                   topn=50) +
+  xlab(NULL) +
+  ylab("Relative abundance (%)") +
+  guides(fill= guide_legend(keywidth = 0.5, keyheight = 0.5, ncol=4))
+TopTaxa_16S_BC_ON_SF_Pruned
+
+PS_16S_BC_ON_SF_Pruned
+
+### RESUNME HERE
+
+#Take a closer look at the species we can remove by creating a taxa table
+Taxa_Table_16S_BC_ON_SF_Pruned <- as.data.frame(phyloseq::tax_table(PS_16S_BC_ON_SF_Pruned))
+
+Taxa_Table_16S_BC_ON_SF_Pruned
+
+# Removal of ubiqitous species and unknown phylums 
+PS_16S_BC_ON_SF_Pruned
+
+PS_16S_BC_ON_SF_Filtered<-subset_taxa(PS_16S_BC_ON_SF_Pruned, Phylum!="Cyanobacteria")
+PS_16S_BC_ON_SF_Filtered<-subset_taxa(PS_16S_BC_ON_SF_Filtered, Phylum!="NA")
+PS_16S_BC_ON_SF_Filtered<-subset_taxa(PS_16S_BC_ON_SF_Filtered, Order !="Chloroplast")
+PS_16S_BC_ON_SF_Filtered<-subset_taxa(PS_16S_BC_ON_SF_Filtered, Species !="mitochondria")
+PS_16S_BC_ON_SF_Filtered<-subset_taxa(PS_16S_BC_ON_SF_Filtered, Species !="metagenome")
+
+
+### Did removal work ###
+
+classtaxa_16S_BC_ON_SF_Filtered<- get_taxadf(obj=PS_16S_BC_ON_SF_Filtered, taxlevel=7)
+# The 30 most abundant taxonomy will be visualized by default (parameter `topn=30`). 
+TopTaxa_16S_BC_ON_SF_Filtered<- ggbartax(obj=classtaxa_16S_BC_ON_SF_Filtered, 
+                   facetNames="Province", 
+                   plotgroup=TRUE, 
+                   topn=10) +
+  xlab(NULL) +
+  ylab("Relative abundance (%)") +
+  guides(fill= guide_legend(keywidth = 0.5, keyheight = 0.5, ncol=4))
+
+TopTaxa_16S_BC_ON_SF_Filtered
+
+summarize_phyloseq(PS_16S_BC_ON_SF_Filtered)
+PS_16S_BC_ON_SF_Pruned
+
+PS_16S_BC_ON_SF_Filtered
+```
+
+General Heat Map 
+
+```{r Heat Map }
+
+#General HeatMap 
+
+Meco_16S_SF <- phyloseq2meco(PS_16S_BC_ON_SF_Filtered)
+
+Heatmap__16S_SF <- trans_abund$new(dataset = Meco_16S_SF, 
+
+                      taxrank = "Species", 
+
+                      ntaxa = 11)
+
+Heatmap__16S_SF$plot_heatmap(facet = c("Province","SampleType"),
+                color_values = rev(RColorBrewer::brewer.pal(n = 11, 
+                                                            name = "Spectral")),
+                xtext_keep = FALSE, 
+                withmargin = TRUE)
+
+#BC and ON stone fruit separated metadata
+PS_BC_Only_SF <- subset_samples(PS_BC_ON_SF, Province == "BC")
+
+meta(PS_BC_Only_SF)
+#82 Rows for the BC subset 
+
+PS_ON_Only_SF <- subset_samples(PS_BC_ON_SF, Province == "ON")
+
+meta(PS_ON_Only_SF)
+#56 Rows
+
+Taxa_Table_16S_BC_ON_SF_Pruned
+
+```
+
+
+```{r global tree  }
+
+
+PS_16S_BC_ON_SF_Filtered_Paenibacillus<- subset_taxa(PS_16S_BC_ON_SF_Filtered, Class == "Bacilli")
+
+Taxa_Table_PS_16S_BC_ON_SF_Filtered<- as.data.frame(phyloseq::tax_table(PS_16S_BC_ON_SF_Filtered))
+
+Taxa_Table_PS_16S_BC_ON_SF_Filtered
+plot_tree(tax_glom(PS_16S_BC_ON_SF_Filtered_Paenibacillus, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="SampleType", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+
+plot_tree(tax_glom(PS_16S_BC_ON_SF_Filtered, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="SampleType", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+
+```

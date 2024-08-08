@@ -1,0 +1,109 @@
+---
+title: "Base_Load"
+author: "MInuka"
+date: "2024-07-19"
+output: html_document
+---
+Chunk 1 : Loading packages and loading the PS objects  
+```{r Initial Load, echo=FALSE}
+
+library("qiime2R") # devtools::install_github("jbisanz/qiime2R")
+library("phyloseq")
+library("readxl")      
+library("tibble")
+library("vegan")
+library("DESeq2") #BiocManager::install("DESeq2")
+library("speedyseq") # remotes::install_github("mikemc/speedyseq") 
+library("ape")
+library("ggstar")
+library("forcats")
+library("patchwork")
+library("ggpubr")
+library("plotROC")
+library("viridis")
+library("cowplot")
+library("ggplot2")
+library("microbiome") # BiocManager::install("microbiome")
+library("microbiomeutilities")
+
+library("ggtree") # BiocManager::install("ggtree")
+library("ggtreeExtra") #install.packages("ggExtra")
+library('MicrobiotaProcess') # BiocManager::install("MicrobiotaProcess")
+
+#library("tidytree")
+
+library("file2meco")
+library("microeco")
+
+PS_ITS1R_Global<-qza_to_phyloseq(
+  features="D:\\Grad_School\\Grad_Project\\Qiime_Outputs\\ITS2_NEW\\table.qza",
+  tree="D:\\Grad_School\\Grad_Project\\Qiime_Outputs\\ITS2_NEW\\rooted-tree.qza",
+  taxonomy="D:\\Grad_School\\Grad_Project\\Qiime_Outputs\\ITS2_NEW\\taxonomy.qza",
+  metadata = "D:\\Grad_School\\Grad_Project\\Qiime_Outputs\\ITS2_NEW\\ITS2_Global.tsv"
+)
+
+PS_16S_Global<-qza_to_phyloseq(
+  features="D:\\Grad_School\\Grad_Project\\Qiime_Outputs\\New_Silva_Global\\table.qza",
+  tree="D:\\Grad_School\\Grad_Project\\Qiime_Outputs\\New_Silva_Global\\rooted-tree.qza",
+  taxonomy="D:\\Grad_School\\Grad_Project\\Qiime_Outputs\\New_Silva_Global\\taxonomy.qza",
+  metadata = "D:\\Grad_School\\Grad_Project\\Qiime_Outputs\\New_Silva_Global\\Global.tsv"
+)
+
+
+ 
+```
+
+2 : Splitting objects
+
+First remove Alberta from ITS1R and 16S
+
+Then Split to Stonefruits and BB respectively 
+```{r ITS1R Splitting}
+
+#removal of AB province 
+PS_ITS1R_BC_ON <- subset_samples(PS_ITS1R_Global, Province !="AB")
+meta(PS_ITS1R_BC_ON)
+
+PS_ITS1R_BC_ON_SF <- subset_samples(PS_ITS1R_BC_ON, Plant !="Wild forage")
+PS_ITS1R_BC_ON_SF <- subset_samples(PS_ITS1R_BC_ON_SF, Plant !="Blueberry")
+PS_ITS1R_BC_ON_SF
+meta(PS_ITS1R_BC_ON_SF)
+
+#Remove these to obtain Wild Forage and Bluberry subset 
+# Cherry, Apple , Peach , Apricot 
+PS_ITS1R_BC_ON_BB <-subset_samples(PS_ITS1R_BC_ON, Plant !="Cherry")
+PS_ITS1R_BC_ON_BB <-subset_samples(PS_ITS1R_BC_ON_BB, Plant !="Apple")
+PS_ITS1R_BC_ON_BB <- subset_samples(PS_ITS1R_BC_ON_BB, Plant !="Peach")
+PS_ITS1R_BC_ON_BB <- subset_samples(PS_ITS1R_BC_ON_BB, Plant !="Apricot")
+
+PS_ITS1R_BC_ON_BB
+meta(PS_ITS1R_BC_ON_BB)
+
+
+```
+
+Repeat for 16S 
+
+```{r 16S Splitting}
+#removal of AB province
+PS_16S_BC_ON <- subset_samples(PS_16S_Global, Province !="AB")
+meta(PS_16S_BC_ON)
+
+#Stone fruit subset     
+PS_16S_BC_ON_SF <- subset_samples(PS_16S_BC_ON, Plant !="Wild forage")
+PS_16S_BC_ON_SF <- subset_samples(PS_16S_BC_ON_SF, Plant !="Blueberry")
+PS_16S_BC_ON_SF <- subset_samples(PS_16S_BC_ON_SF, Plant !="Kit")
+meta(PS_16S_BC_ON_SF)
+
+#Remove these to obtain Wild Forage and Bluberry subset 
+# Cherry, Apple , Peach , Apricot 
+PS_16S_BC_ON_BB <-subset_samples(PS_16S_BC_ON, Plant !="Cherry")
+PS_16S_BC_ON_BB <-subset_samples(PS_16S_BC_ON_BB, Plant !="Apple")
+PS_16S_BC_ON_BB <- subset_samples(PS_16S_BC_ON_BB, Plant !="Peach")
+PS_16S_BC_ON_BB <- subset_samples(PS_16S_BC_ON_BB, Plant !="Apricot")
+PS_16S_BC_ON_BB <- subset_samples(PS_16S_BC_ON_BB, Plant !="Kit")
+
+
+PS_16S_BC_ON_BB
+meta(PS_16S_BC_ON_BB)
+```
