@@ -1,0 +1,255 @@
+sample-id	Barcode-sequence	LinkerPrimerSequence	InputFileName	Description	SampleName	Number	Province	Location	Plant 	SampleType	Site	DateCollected	Colony	DNANg 
+A01	N/A	N/A	A01_9_L001_R1_001.fastq.gz	BCC_16S_R1_1	BCCV1-AP-1B	1	BC	Creston Valley	Apple	Bread	1	Spring 2021	1	1.16
+A02	N/A	N/A	A02_9_L001_R1_001.fastq.gz	BCC_16S_R1_2	BCCV1-AP-2B	2	BC	Creston Valley	Apple	Bread	1	Spring 2021	2	0.74
+A03	N/A	N/A	A03_9_L001_R1_001.fastq.gz	BCC_16S_R1_3	BCCV1-AP-3B	3	BC	Creston Valley	Apple	Bread	1	Spring 2021	3	0.867
+A04	N/A	N/A	A04_9_L001_R1_001.fastq.gz	BCC_16S_R1_4	BCCV2-AP-1B	4	BC	Creston Valley	Apple	Bread	2	Spring 2021	1	0.563
+A05	N/A	N/A	A05_9_L001_R1_001.fastq.gz	BCC_16S_R1_5	BCCV2-AP-2B	5	BC	Creston Valley	Apple	Bread	2	Spring 2021	2	0.987
+A06	N/A	N/A	A06_9_L001_R1_001.fastq.gz	BCC_16S_R1_6	BCCV2-AP-3B	6	BC	Creston Valley	Apple	Bread	2	Spring 2021	3	0.525
+A07	N/A	N/A	A07_9_L001_R1_001.fastq.gz	BCC_16S_R1_7	BCCV3-AP-1B	7	BC	Creston Valley	Apple	Bread	3	Spring 2021	1	1.19
+A08	N/A	N/A	A08_9_L001_R1_001.fastq.gz	BCC_16S_R1_8	BCCV3-AP-2B	8	BC	Creston Valley	Apple	Bread	3	Spring 2021	2	1.44
+A09	N/A	N/A	A09_9_L001_R1_001.fastq.gz	BCC_16S_R1_9	BCCV3-AP-3B	9	BC	Creston Valley	Apple	Bread	3	Spring 2021	3	1.08
+A10	N/A	N/A	A10_9_L001_R1_001.fastq.gz	BCC_16S_R1_10	BCFV1-BB-1B	10	BC	Fraser Valley	Blueberry	Bread	1	12-May-21	1	1.83
+A11	N/A	N/A	A11_9_L001_R1_001.fastq.gz	BCC_16S_R1_11	BCFV1-BB-2B	11	BC	Fraser Valley	Blueberry	Bread	1	12-May-21	2	1.36
+A12	N/A	N/A	A12_9_L001_R1_001.fastq.gz	BCC_16S_R1_12	BCFV1-BB-3B	12	BC	Fraser Valley	Blueberry	Bread	1	12-May-21	3	2.51
+A13	N/A	N/A	A13_9_L001_R1_001.fastq.gz	BCC_16S_R1_13	BCFV1-BB-4B	13	BC	Fraser Valley	Blueberry	Bread	1	12-May-21	4	4.49
+A14	N/A	N/A	A14_9_L001_R1_001.fastq.gz	BCC_16S_R1_14	BCFV2-BB-1B	14	BC	Fraser Valley	Blueberry	Bread	2	12-May-21	1	5.43
+A15	N/A	N/A	A15_9_L001_R1_001.fastq.gz	BCC_16S_R1_15	BCFV2-BB-2B	15	BC	Fraser Valley	Blueberry	Bread	2	12-May-21	2	3.86
+A16	N/A	N/A	A16_9_L001_R1_001.fastq.gz	BCC_16S_R1_16	BCFV2-BB-3B	16	BC	Fraser Valley	Blueberry	Bread	2	12-May-21	3	1.95
+A17	N/A	N/A	A17_9_L001_R1_001.fastq.gz	BCC_16S_R1_17	BCFV2-BB-4B	17	BC	Fraser Valley	Blueberry	Bread	2	12-May-21	4	5.57
+A18	N/A	N/A	A18_9_L001_R1_001.fastq.gz	BCC_16S_R1_18	BCCV1-CH-1B	18	BC	Creston Valley	Cherry	Bread	1	Spring 2021	1	3.81
+A19	N/A	N/A	A19_9_L001_R1_001.fastq.gz	BCC_16S_R1_19	BCCV1-CH-2B	19	BC	Creston Valley	Cherry	Bread	1	Spring 2021	2	1.07
+A20	N/A	N/A	A20_9_L001_R1_001.fastq.gz	BCC_16S_R1_20	BCCV1-CH-3B	20	BC	Creston Valley	Cherry	Bread	1	Spring 2021	3	0.576
+A21	N/A	N/A	A21_9_L001_R1_001.fastq.gz	BCC_16S_R1_21	BCCV2-CH-1B	21	BC	Creston Valley	Cherry	Bread	2	Spring 2021	1	0.827
+A22	N/A	N/A	A22_9_L001_R1_001.fastq.gz	BCC_16S_R1_22	BCCV2-CH-2B	22	BC	Creston Valley	Cherry	Bread	2	Spring 2021	2	1.42
+A23	N/A	N/A	A23_9_L001_R1_001.fastq.gz	BCC_16S_R1_23	BCCV2-CH-3B	23	BC	Creston Valley	Cherry	Bread	2	Spring 2021	3	1.65
+A24	N/A	N/A	A24_9_L001_R1_001.fastq.gz	BCC_16S_R1_24	BCCV3-CH-1B	24	BC	Creston Valley	Cherry	Bread	3	Spring 2021	1	1.12
+A25	N/A	N/A	A25_9_L001_R1_001.fastq.gz	BCC_16S_R1_25	BCCV3-CH-2B	25	BC	Creston Valley	Cherry	Bread	3	Spring 2021	2	0.847
+A26	N/A	N/A	A26_9_L001_R1_001.fastq.gz	BCC_16S_R1_26	BCCV3-CH-3B	26	BC	Creston Valley	Cherry	Bread	3	Spring 2021	3	1.09
+A27	N/A	N/A	A27_9_L001_R1_001.fastq.gz	BCC_16S_R1_27	BCFV1-WF-1B	27	BC	Fraser Valley	Wild forage	Bread	1	12-May-21	1	0.933
+A28	N/A	N/A	A28_9_L001_R1_001.fastq.gz	BCC_16S_R1_28	BCFV1-WF-2B	28	BC	Fraser Valley	Wild forage	Bread	1	12-May-21	2	0.8
+A29	N/A	N/A	A29_9_L001_R1_001.fastq.gz	BCC_16S_R1_29	BCFV1-WF-3B	29	BC	Fraser Valley	Wild forage	Bread	1	12-May-21	3	0.833
+A30	N/A	N/A	A30_9_L001_R1_001.fastq.gz	BCC_16S_R1_30	BCFV1-WF-4B	30	BC	Fraser Valley	Wild forage	Bread	1	12-May-21	4	1.39
+A31	N/A	N/A	A31_9_L001_R1_001.fastq.gz	BCC_16S_R1_31	BCFV2-WF-1B	31	BC	Fraser Valley	Wild forage	Bread	2	12-May-21	1	1.04
+A32	N/A	N/A	A32_9_L001_R1_001.fastq.gz	BCC_16S_R1_32	BCFV2-WF-2B	32	BC	Fraser Valley	Wild forage	Bread	2	12-May-21	2	1.17
+A33	N/A	N/A	A33_9_L001_R1_001.fastq.gz	BCC_16S_R1_33	BCFV2-WF-3B	33	BC	Fraser Valley	Wild forage	Bread	2	12-May-21	3	1.47
+A34	N/A	N/A	A34_9_L001_R1_001.fastq.gz	BCC_16S_R1_34	BCFV2-WF-4B	34	BC	Fraser Valley	Wild forage	Bread	2	12-May-21	4	1.31
+A35	N/A	N/A	A35_9_L001_R1_001.fastq.gz	BCC_16S_R1_35	BCCV1-AP-1F	35	BC	Creston Valley	Apple	Forager	1	Spring 2021	1	39.3
+A36	N/A	N/A	A36_9_L001_R1_001.fastq.gz	BCC_16S_R1_36	BCCV1-AP-2F	36	BC	Creston Valley	Apple	Forager	1	Spring 2021	2	44.2
+A37	N/A	N/A	A37_9_L001_R1_001.fastq.gz	BCC_16S_R1_37	BCCV1-AP-3F	37	BC	Creston Valley	Apple	Forager	1	Spring 2021	3	100
+A38	N/A	N/A	A38_9_L001_R1_001.fastq.gz	BCC_16S_R1_38	BCCV2-AP-1F	38	BC	Creston Valley	Apple	Forager	2	Spring 2021	1	103
+A39	N/A	N/A	A39_9_L001_R1_001.fastq.gz	BCC_16S_R1_39	BCCV2-AP-2F	39	BC	Creston Valley	Apple	Forager	2	Spring 2021	2	18.1
+A40	N/A	N/A	A40_9_L001_R1_001.fastq.gz	BCC_16S_R1_40	BCCV2-AP-3F	40	BC	Creston Valley	Apple	Forager	2	Spring 2021	3	42.4
+A41	N/A	N/A	A41_9_L001_R1_001.fastq.gz	BCC_16S_R1_41	BCCV3-AP-1F	41	BC	Creston Valley	Apple	Forager	3	Spring 2021	1	48.6
+A42	N/A	N/A	A42_9_L001_R1_001.fastq.gz	BCC_16S_R1_42	BCCV3-AP-2F	42	BC	Creston Valley	Apple	Forager	3	Spring 2021	2	50.9
+A43	N/A	N/A	A43_9_L001_R1_001.fastq.gz	BCC_16S_R1_43	BCCV3-AP-3F	43	BC	Creston Valley	Apple	Forager	3	Spring 2021	3	30.3
+A44	N/A	N/A	A44_9_L001_R1_001.fastq.gz	BCC_16S_R1_44	BCFV1-BB-1F	44	BC	Fraser Valley	Blueberry	Forager	1	12-May-21	1	68.7
+A45	N/A	N/A	A45_9_L001_R1_001.fastq.gz	BCC_16S_R1_45	BCFV1-BB-2F	45	BC	Fraser Valley	Blueberry	Forager	1	12-May-21	2	70.7
+A46	N/A	N/A	A46_9_L001_R1_001.fastq.gz	BCC_16S_R1_46	BCFV1-BB-3F	46	BC	Fraser Valley	Blueberry	Forager	1	12-May-21	3	47.3
+A47	N/A	N/A	A47_9_L001_R1_001.fastq.gz	BCC_16S_R1_47	BCFV1-BB-4F	47	BC	Fraser Valley	Blueberry	Forager	1	12-May-21	4	29.2
+A48	N/A	N/A	A48_9_L001_R1_001.fastq.gz	BCC_16S_R1_48	BCFV2-BB-1F	48	BC	Fraser Valley	Blueberry	Forager	2	12-May-21	1	27.6
+A49	N/A	N/A	A49_9_L001_R1_001.fastq.gz	BCC_16S_R1_49	BCFV2-BB-2F	49	BC	Fraser Valley	Blueberry	Forager	2	12-May-21	2	101
+A50	N/A	N/A	A50_9_L001_R1_001.fastq.gz	BCC_16S_R1_50	BCFV2-BB-3F	50	BC	Fraser Valley	Blueberry	Forager	2	12-May-21	3	41.4
+A51	N/A	N/A	A51_9_L001_R1_001.fastq.gz	BCC_16S_R1_51	BCFV2-BB-4F	51	BC	Fraser Valley	Blueberry	Forager	2	12-May-21	4	99.3
+A52	N/A	N/A	A52_9_L001_R1_001.fastq.gz	BCC_16S_R1_52	BCCV1-CH-1F	52	BC	Creston Valley	Cherry	Forager	1	Spring 2021	1	42.2
+A53	N/A	N/A	A53_9_L001_R1_001.fastq.gz	BCC_16S_R1_53	BCCV1-CH-2F	53	BC	Creston Valley	Cherry	Forager	1	Spring 2021	2	77.3
+A54	N/A	N/A	A54_9_L001_R1_001.fastq.gz	BCC_16S_R1_54	BCCV1-CH-3F	54	BC	Creston Valley	Cherry	Forager	1	Spring 2021	3	41.9
+A55	N/A	N/A	A55_9_L001_R1_001.fastq.gz	BCC_16S_R1_55	BCCV2-CH-1F	55	BC	Creston Valley	Cherry	Forager	2	Spring 2021	1	51.6
+A56	N/A	N/A	A56_9_L001_R1_001.fastq.gz	BCC_16S_R1_56	BCCV2-CH-2F	56	BC	Creston Valley	Cherry	Forager	2	Spring 2021	2	61.6
+A57	N/A	N/A	A57_9_L001_R1_001.fastq.gz	BCC_16S_R1_57	BCCV2-CH-3F	57	BC	Creston Valley	Cherry	Forager	2	Spring 2021	3	103
+A58	N/A	N/A	A58_9_L001_R1_001.fastq.gz	BCC_16S_R1_58	BCCV3-CH-1F	58	BC	Creston Valley	Cherry	Forager	3	Spring 2021	1	69.3
+A59	N/A	N/A	A59_9_L001_R1_001.fastq.gz	BCC_16S_R1_59	BCCV3-CH-2F	59	BC	Creston Valley	Cherry	Forager	3	Spring 2021	2	61
+A60	N/A	N/A	A60_9_L001_R1_001.fastq.gz	BCC_16S_R1_60	BCCV3-CH-3F	60	BC	Creston Valley	Cherry	Forager	3	Spring 2021	3	35.2
+A61	N/A	N/A	A61_9_L001_R1_001.fastq.gz	BCC_16S_R1_61	BCFV1-WF-1F	61	BC	Fraser Valley	Wild forage	Forager	1	12-May-21	1	42.9
+A62	N/A	N/A	A62_9_L001_R1_001.fastq.gz	BCC_16S_R1_62	BCFV1-WF-2F	62	BC	Fraser Valley	Wild forage	Forager	1	12-May-21	2	82
+A63	N/A	N/A	A63_9_L001_R1_001.fastq.gz	BCC_16S_R1_63	BCFV1-WF-3F	63	BC	Fraser Valley	Wild forage	Forager	1	12-May-21	3	113
+A64	N/A	N/A	A64_9_L001_R1_001.fastq.gz	BCC_16S_R1_64	BCFV1-WF-4F	64	BC	Fraser Valley	Wild forage	Forager	1	12-May-21	4	74
+A65	N/A	N/A	A65_9_L001_R1_001.fastq.gz	BCC_16S_R1_65	BCFV2-WF-1F	65	BC	Fraser Valley	Wild forage	Forager	2	12-May-21	1	70
+A66	N/A	N/A	A66_9_L001_R1_001.fastq.gz	BCC_16S_R1_66	BCFV2-WF-2F	66	BC	Fraser Valley	Wild forage	Forager	2	12-May-21	2	91.3
+A67	N/A	N/A	A67_9_L001_R1_001.fastq.gz	BCC_16S_R1_67	BCFV2-WF-3F	67	BC	Fraser Valley	Wild forage	Forager	2	12-May-21	3	43.4
+A68	N/A	N/A	A68_9_L001_R1_001.fastq.gz	BCC_16S_R1_68	BCFV2-WF-4F	68	BC	Fraser Valley	Wild forage	Forager	2	12-May-21	4	66.5
+A69	N/A	N/A	A69_9_L001_R1_001.fastq.gz	BCC_16S_R1_69	BCCV1-AP-1H	69	BC	Creston Valley	Apple	Hive	1	Spring 2021	1	189
+A70	N/A	N/A	A70_9_L001_R1_001.fastq.gz	BCC_16S_R1_70	BCCV1-AP-2H	70	BC	Creston Valley	Apple	Hive	1	Spring 2021	2	123
+A71	N/A	N/A	A71_9_L001_R1_001.fastq.gz	BCC_16S_R1_71	BCCV1-AP-3H	71	BC	Creston Valley	Apple	Hive	1	Spring 2021	3	149
+A72	N/A	N/A	A72_9_L001_R1_001.fastq.gz	BCC_16S_R1_72	BCCV2-AP-1H	72	BC	Creston Valley	Apple	Hive	2	Spring 2021	1	192
+A73	N/A	N/A	A73_9_L001_R1_001.fastq.gz	BCC_16S_R1_73	BCCV2-AP-2H	73	BC	Creston Valley	Apple	Hive	2	Spring 2021	2	160
+A74	N/A	N/A	A74_9_L001_R1_001.fastq.gz	BCC_16S_R1_74	BCCV2-AP-3H	74	BC	Creston Valley	Apple	Hive	2	Spring 2021	3	118
+A75	N/A	N/A	A75_9_L001_R1_001.fastq.gz	BCC_16S_R1_75	BCCV3-AP-1H	75	BC	Creston Valley	Apple	Hive	3	Spring 2021	1	93.3
+A76	N/A	N/A	A76_9_L001_R1_001.fastq.gz	BCC_16S_R1_76	BCCV3-AP-2H	76	BC	Creston Valley	Apple	Hive	3	Spring 2021	2	191
+A77	N/A	N/A	A77_9_L001_R1_001.fastq.gz	BCC_16S_R1_77	BCCV3-AP-3H	77	BC	Creston Valley	Apple	Hive	3	Spring 2021	3	135
+A78	N/A	N/A	A78_9_L001_R1_001.fastq.gz	BCC_16S_R1_78	BCFV1-BB-1H	78	BC	Fraser Valley	Blueberry	Hive	1	12-May-21	1	170
+A79	N/A	N/A	A79_9_L001_R1_001.fastq.gz	BCC_16S_R1_79	BCFV1-BB-2H	79	BC	Fraser Valley	Blueberry	Hive	1	12-May-21	2	181
+A80	N/A	N/A	A80_9_L001_R1_001.fastq.gz	BCC_16S_R1_80	BCFV1-BB-3H	80	BC	Fraser Valley	Blueberry	Hive	1	12-May-21	3	185
+A81	N/A	N/A	A81_9_L001_R1_001.fastq.gz	BCC_16S_R1_81	BCFV1-BB-4H	81	BC	Fraser Valley	Blueberry	Hive	1	12-May-21	4	194
+A82	N/A	N/A	A82_9_L001_R1_001.fastq.gz	BCC_16S_R1_82	BCFV2-BB-1H	82	BC	Fraser Valley	Blueberry	Hive	2	12-May-21	1	143
+A83	N/A	N/A	A83_9_L001_R1_001.fastq.gz	BCC_16S_R1_83	BCFV2-BB-2H	83	BC	Fraser Valley	Blueberry	Hive	2	12-May-21	2	143
+A84	N/A	N/A	A84_9_L001_R1_001.fastq.gz	BCC_16S_R1_84	BCFV2-BB-3H	84	BC	Fraser Valley	Blueberry	Hive	2	12-May-21	3	129
+A85	N/A	N/A	A85_9_L001_R1_001.fastq.gz	BCC_16S_R1_85	BCFV2-BB-4H	85	BC	Fraser Valley	Blueberry	Hive	2	12-May-21	4	125
+A86	N/A	N/A	A86_9_L001_R1_001.fastq.gz	BCC_16S_R1_86	BCCV1-CH-1H	86	BC	Creston Valley	Cherry	Hive	1	Spring 2021	1	88.7
+A87	N/A	N/A	A87_9_L001_R1_001.fastq.gz	BCC_16S_R1_87	BCCV1-CH-2H	87	BC	Creston Valley	Cherry	Hive	1	Spring 2021	2	150
+A88	N/A	N/A	A88_9_L001_R1_001.fastq.gz	BCC_16S_R1_88	BCCV1-CH-3H	88	BC	Creston Valley	Cherry	Hive	1	Spring 2021	3	127
+A89	N/A	N/A	A89_9_L001_R1_001.fastq.gz	BCC_16S_R1_89	BCCV2-CH-1H	89	BC	Creston Valley	Cherry	Hive	2	Spring 2021	1	66.7
+A90	N/A	N/A	A90_9_L001_R1_001.fastq.gz	BCC_16S_R1_90	BCCV2-CH-2H	90	BC	Creston Valley	Cherry	Hive	2	Spring 2021	2	103
+A91	N/A	N/A	A91_9_L001_R1_001.fastq.gz	BCC_16S_R1_91	BCCV2-CH-3H	91	BC	Creston Valley	Cherry	Hive	2	Spring 2021	3	141
+A92	N/A	N/A	A92_9_L001_R1_001.fastq.gz	BCC_16S_R1_92	BCCV3-CH-1H	92	BC	Creston Valley	Cherry	Hive	3	Spring 2021	1	118
+A93	N/A	N/A	A93_9_L001_R1_001.fastq.gz	BCC_16S_R1_93	BCCV3-CH-2H	93	BC	Creston Valley	Cherry	Hive	3	Spring 2021	2	71.3
+A94	N/A	N/A	A94_9_L001_R1_001.fastq.gz	BCC_16S_R1_94	BCCV3-CH-3H	94	BC	Creston Valley	Cherry	Hive	3	Spring 2021	3	84
+A95	N/A	N/A	A95_9_L001_R1_001.fastq.gz	BCC_16S_R1_95	BCFV1-WF-1H	95	BC	Fraser Valley	Wild forage	Hive	1	12-May-21	1	184
+A96	N/A	N/A	A96_9_L001_R1_001.fastq.gz	BCC_16S_R1_96	BCFV1-WF-2H	96	BC	Fraser Valley	Wild forage	Hive	1	12-May-21	2	153
+B01	N/A	N/A	B01_9_L001_R1_001.fastq.gz	BCC_16S_R2_1	BCFV1-WF-3H	1	BC	Fraser Valley	Wild forage	Hive	1	12-May-21	3	181
+B02	N/A	N/A	B02_9_L001_R1_001.fastq.gz	BCC_16S_R2_2	BCFV1-WF-4H	2	BC	Fraser Valley	Wild forage	Hive	1	12-May-21	4	134
+B03	N/A	N/A	B03_9_L001_R1_001.fastq.gz	BCC_16S_R2_3	BCFV2-WF-1H	3	BC	Fraser Valley	Wild forage	Hive	2	12-May-21	1	121
+B04	N/A	N/A	B04_9_L001_R1_001.fastq.gz	BCC_16S_R2_4	BCFV2-WF-2H	4	BC	Fraser Valley	Wild forage	Hive	2	12-May-21	2	127
+B05	N/A	N/A	B05_9_L001_R1_001.fastq.gz	BCC_16S_R2_5	BCFV2-WF-3H	5	BC	Fraser Valley	Wild forage	Hive	2	12-May-21	3	137
+B06	N/A	N/A	B06_9_L001_R1_001.fastq.gz	BCC_16S_R2_6	BCFV2-WF-4H	6	BC	Fraser Valley	Wild forage	Hive	2	12-May-21	4	109
+B07	N/A	N/A	B07_9_L001_R1_001.fastq.gz	BCC_16S_R2_7	BCCV1-AP-1P	7	BC	Creston Valley	Apple	Pollen	1	Spring 2021	1	4.08
+B08	N/A	N/A	B08_9_L001_R1_001.fastq.gz	BCC_16S_R2_8	BCCV1-AP-2P	8	BC	Creston Valley	Apple	Pollen	1	Spring 2021	2	2.2
+B09	N/A	N/A	B09_9_L001_R1_001.fastq.gz	BCC_16S_R2_9	BCCV1-AP-3P	9	BC	Creston Valley	Apple	Pollen	1	Spring 2021	3	4.67
+B10	N/A	N/A	B10_9_L001_R1_001.fastq.gz	BCC_16S_R2_10	BCCV2-AP-1P	10	BC	Creston Valley	Apple	Pollen	2	Spring 2021	1	2.46
+B11	N/A	N/A	B11_9_L001_R1_001.fastq.gz	BCC_16S_R2_11	BCCV2-AP-2P	11	BC	Creston Valley	Apple	Pollen	2	Spring 2021	2	1.83
+B12	N/A	N/A	B12_9_L001_R1_001.fastq.gz	BCC_16S_R2_12	BCCV2-AP-3P	12	BC	Creston Valley	Apple	Pollen	2	Spring 2021	3	2.58
+B13	N/A	N/A	B13_9_L001_R1_001.fastq.gz	BCC_16S_R2_13	BCCV3-AP-1P	13	BC	Creston Valley	Apple	Pollen	3	Spring 2021	1	1.85
+B14	N/A	N/A	B14_9_L001_R1_001.fastq.gz	BCC_16S_R2_14	BCCV3-AP-2P	14	BC	Creston Valley	Apple	Pollen	3	Spring 2021	2	7.87
+B15	N/A	N/A	B15_9_L001_R1_001.fastq.gz	BCC_16S_R2_15	BCCV3-AP-3P	15	BC	Creston Valley	Apple	Pollen	3	Spring 2021	3	7.27
+B16	N/A	N/A	B16_9_L001_R1_001.fastq.gz	BCC_16S_R2_16	BCFV1-BB-1P	16	BC	Fraser Valley	Blueberry	Pollen	1	14-May-21	1	1.03
+B17	N/A	N/A	B17_9_L001_R1_001.fastq.gz	BCC_16S_R2_17	BCFV1-BB-2P	17	BC	Fraser Valley	Blueberry	Pollen	1	14-May-21	2	5.17
+B18	N/A	N/A	B18_9_L001_R1_001.fastq.gz	BCC_16S_R2_18	BCFV1-BB-3P	18	BC	Fraser Valley	Blueberry	Pollen	1	14-May-21	3	3.65
+B19	N/A	N/A	B19_9_L001_R1_001.fastq.gz	BCC_16S_R2_19	BCFV1-BB-4P	19	BC	Fraser Valley	Blueberry	Pollen	1	14-May-21	4	3.43
+B20	N/A	N/A	B20_9_L001_R1_001.fastq.gz	BCC_16S_R2_20	BCFV2-BB-1P	20	BC	Fraser Valley	Blueberry	Pollen	2	14-May-21	1	5.03
+B21	N/A	N/A	B21_9_L001_R1_001.fastq.gz	BCC_16S_R2_21	BCFV2-BB-2P	21	BC	Fraser Valley	Blueberry	Pollen	2	14-May-21	2	5.77
+B22	N/A	N/A	B22_9_L001_R1_001.fastq.gz	BCC_16S_R2_22	BCFV2-BB-3P	22	BC	Fraser Valley	Blueberry	Pollen	2	14-May-21	3	3.32
+B23	N/A	N/A	B23_9_L001_R1_001.fastq.gz	BCC_16S_R2_23	BCFV2-BB-4P	23	BC	Fraser Valley	Blueberry	Pollen	2	14-May-21	4	2.53
+B24	N/A	N/A	B24_9_L001_R1_001.fastq.gz	BCC_16S_R2_24	BCCV1-CH-1P	24	BC	Creston Valley	Cherry	Pollen	1	Spring 2021	1	3.85
+B25	N/A	N/A	B25_9_L001_R1_001.fastq.gz	BCC_16S_R2_25	BCCV1-CH-2P	25	BC	Creston Valley	Cherry	Pollen	1	Spring 2021	2	4.37
+B26	N/A	N/A	B26_9_L001_R1_001.fastq.gz	BCC_16S_R2_26	BCCV1-CH-3P	26	BC	Creston Valley	Cherry	Pollen	1	Spring 2021	3	3.09
+B27	N/A	N/A	B27_9_L001_R1_001.fastq.gz	BCC_16S_R2_27	BCCV2-CH-1P	27	BC	Creston Valley	Cherry	Pollen	2	Spring 2021	1	1.79
+B28	N/A	N/A	B28_9_L001_R1_001.fastq.gz	BCC_16S_R2_28	BCCV2-CH-2P	28	BC	Creston Valley	Cherry	Pollen	2	Spring 2021	2	4.21
+B29	N/A	N/A	B29_9_L001_R1_001.fastq.gz	BCC_16S_R2_29	BCCV2-CH-3P	29	BC	Creston Valley	Cherry	Pollen	3	Spring 2021	2	1.43
+B30	N/A	N/A	B30_9_L001_R1_001.fastq.gz	BCC_16S_R2_30	BCCV3-CH-1P	30	BC	Creston Valley	Cherry	Pollen	1	Spring 2021	3	3.75
+B31	N/A	N/A	B31_9_L001_R1_001.fastq.gz	BCC_16S_R2_31	BCCV3-CH-2P	31	BC	Creston Valley	Cherry	Pollen	2	Spring 2021	3	5.51
+B32	N/A	N/A	B32_9_L001_R1_001.fastq.gz	BCC_16S_R2_32	BCCV3-CH-3P	32	BC	Creston Valley	Cherry	Pollen	3	Spring 2021	3	2.71
+B33	N/A	N/A	B33_9_L001_R1_001.fastq.gz	BCC_16S_R2_33	BCFV1-WF-1P	33	BC	Fraser Valley	Wild forage	Pollen	1	14-May-21	1	1.67
+B34	N/A	N/A	B34_9_L001_R1_001.fastq.gz	BCC_16S_R2_34	BCFV1-WF-2P	34	BC	Fraser Valley	Wild forage	Pollen	2	14-May-21	1	0.973
+B35	N/A	N/A	B35_9_L001_R1_001.fastq.gz	BCC_16S_R2_35	BCFV1-WF-3P	35	BC	Fraser Valley	Wild forage	Pollen	3	14-May-21	1	0.76
+B36	N/A	N/A	B36_9_L001_R1_001.fastq.gz	BCC_16S_R2_36	BCFV1-WF-4P	36	BC	Fraser Valley	Wild forage	Pollen	4	14-May-21	1	3.67
+B37	N/A	N/A	B37_9_L001_R1_001.fastq.gz	BCC_16S_R2_37	BCFV2-WF-1P	37	BC	Fraser Valley	Wild forage	Pollen	1	14-May-21	2	1.82
+B38	N/A	N/A	B38_9_L001_R1_001.fastq.gz	BCC_16S_R2_38	BCFV2-WF-2P	38	BC	Fraser Valley	Wild forage	Pollen	2	14-May-21	2	1.39
+B39	N/A	N/A	B39_9_L001_R1_001.fastq.gz	BCC_16S_R2_39	BCFV2-WF-3P	39	BC	Fraser Valley	Wild forage	Pollen	3	14-May-21	2	1.1
+B40	N/A	N/A	B40_9_L001_R1_001.fastq.gz	BCC_16S_R2_40	BCFV2-WF-4P	40	BC	Fraser Valley	Wild forage	Pollen	4	14-May-21	2	5.67
+B41	N/A	N/A	B41_9_L001_R1_001.fastq.gz	BCC_16S_R2_41	BCCV1-AP-T1	41	BC	Creston Valley	Apple	Leaf and Flower 	1	Spring 2021	Col 1-5	38.65
+B42	N/A	N/A	B42_9_L001_R1_001.fastq.gz	BCC_16S_R2_42	BCCV1-AP-T2	42	BC	Creston Valley	Apple	Leaf and Flower 	1	Leaf	Col 6-10	63.5
+B43	N/A	N/A	B43_9_L001_R1_001.fastq.gz	BCC_16S_R2_43	BCCV2-AP-T1	43	BC	Creston Valley	Apple	Leaf and Flower 	2	Spring 2021	Col 1-5	32.95
+B44	N/A	N/A	B44_9_L001_R1_001.fastq.gz	BCC_16S_R2_44	BCCV2-AP-T2	44	BC	Creston Valley	Apple	Leaf and Flower 	2	Spring 2021	Col 6-10	45
+B45	N/A	N/A	B45_9_L001_R1_001.fastq.gz	BCC_16S_R2_45	BCCV3-AP-T1	45	BC	Creston Valley	Apple	Leaf and Flower 	3	Spring 2021	Col 1-5	31.65
+B46	N/A	N/A	B46_9_L001_R1_001.fastq.gz	BCC_16S_R2_46	BCCV3-AP-T2	46	BC	Creston Valley	Apple	Leaf and Flower 	3	Spring 2021	Col 6-10	52
+B47	N/A	N/A	B47_9_L001_R1_001.fastq.gz	BCC_16S_R2_47	BCFV1-BB-T1	47	BC	Fraser Valley	Blueberry	Leaf and Flower 	1	14-May-21	Col 1-5	8.47
+B48	N/A	N/A	B48_9_L001_R1_001.fastq.gz	BCC_16S_R2_48	BCFV2-BB-T2	48	BC	Fraser Valley	Blueberry	Leaf and Flower 	1	14-May-21	Col 6-10	3.21
+B49	N/A	N/A	B49_9_L001_R1_001.fastq.gz	BCC_16S_R2_49	BCFV2-BB-T1	49	BC	Fraser Valley	Blueberry	Leaf and Flower 	2	14-May-21	Col 1-5	3.14
+B50	N/A	N/A	B50_9_L001_R1_001.fastq.gz	BCC_16S_R2_50	BCFV1-BB-T2	50	BC	Fraser Valley	Blueberry	Leaf and Flower 	2	14-May-21	Col 6-10	3.23
+B51	N/A	N/A	B51_9_L001_R1_001.fastq.gz	BCC_16S_R2_51	BCCV1-CH-T1	51	BC	Creston Valley	Cherry	Leaf and Flower 	1	Spring 2021	Col 1-5	26.15
+B52	N/A	N/A	B52_9_L001_R1_001.fastq.gz	BCC_16S_R2_52	BCCV1-CH-T2	52	BC	Creston Valley	Cherry	Leaf and Flower 	1	Spring 2021	Col 6-10	41.35
+B53	N/A	N/A	B53_9_L001_R1_001.fastq.gz	BCC_16S_R2_53	BCCV2-CH-T1	53	BC	Creston Valley	Cherry	Leaf and Flower 	2	Spring 2021	Col 1-5	127
+B54	N/A	N/A	B54_9_L001_R1_001.fastq.gz	BCC_16S_R2_54	BCCV2-CH-T2	54	BC	Creston Valley	Cherry	Leaf and Flower 	2	Spring 2021	Col 6-10	64
+B55	N/A	N/A	B55_9_L001_R1_001.fastq.gz	BCC_16S_R2_55	BCCV3-CH-T1	55	BC	Creston Valley	Cherry	Leaf and Flower 	3	Spring 2021	Col 1-5	85.5
+B56	N/A	N/A	B56_9_L001_R1_001.fastq.gz	BCC_16S_R2_56	BCCV3-CH-T2	56	BC	Creston Valley	Cherry	Leaf and Flower 	3	Spring 2021	Col 6-10	75.5
+C01	N/A	N/A	C01_9_L001_R1_001.fastq.gz	16S_ON_B01	ONJF1-AT-1F	57	ON	AAFC Jordan Farm	Apricot	Forager	N/A	18-Apr	1	131.04
+C02	N/A	N/A	C02_9_L001_R1_001.fastq.gz	16S_ON_B02	ONJF1-AT-2F	58	ON	AAFC Jordan Farm	Apricot	Forager	N/A	18-Apr	2	110.93
+C03	N/A	N/A	C03_9_L001_R1_001.fastq.gz	16S_ON_B03	ONJF1-AT-3F	59	ON	AAFC Jordan Farm	Apricot	Forager	N/A	18-Apr	3	97.27
+C04	N/A	N/A	C04_9_L001_R1_001.fastq.gz	16S_ON_B04	ONJF1-CH-1F	60	ON	AAFC Jordan Farm	Cherry	Forager	N/A	6-May	1	57.85
+C05	N/A	N/A	C05_9_L001_R1_001.fastq.gz	16S_ON_B05	ONJF1-CH-2F	61	ON	AAFC Jordan Farm	Cherry	Forager	N/A	6-May	2	98.45
+C06	N/A	N/A	C06_9_L001_R1_001.fastq.gz	16S_ON_B06	ONJF1-CH-3F	62	ON	AAFC Jordan Farm	Cherry	Forager	N/A	6-May	3	74.84
+C07	N/A	N/A	C07_9_L001_R1_001.fastq.gz	16S_ON_B07	ONJF1-PE-1F	63	ON	AAFC Jordan Farm	Peach	Forager	N/A	12-May	1	68.07
+C08	N/A	N/A	C08_9_L001_R1_001.fastq.gz	16S_ON_B08	ONJF1-PE-2F	64	ON	AAFC Jordan Farm	Peach	Forager	N/A	12-May	2	35.43
+C09	N/A	N/A	C09_9_L001_R1_001.fastq.gz	16S_ON_B09	ONJF1-PE-3F	65	ON	AAFC Jordan Farm	Peach	Forager	N/A	12-May	3	52.38
+C10	N/A	N/A	C10_9_L001_R1_001.fastq.gz	16S_ON_B10	ONJF1-AP-1F	66	ON	AAFC Jordan Farm	Apple	Forager	N/A	19-May	1	119.36
+C11	N/A	N/A	C11_9_L001_R1_001.fastq.gz	16S_ON_B11	ONJF1-AP-2F	67	ON	AAFC Jordan Farm	Apple	Forager	N/A	19-May	2	142.67
+C12	N/A	N/A	C12_9_L001_R1_001.fastq.gz	16S_ON_B12	ONJF1-AP-3F	68	ON	AAFC Jordan Farm	Apple	Forager	N/A	19-May	3	42.64
+C13	N/A	N/A	C13_9_L001_R1_001.fastq.gz	16S_ON_B13	ONJF1-AT-1H	69	ON	AAFC Jordan Farm	Apricot	Hive	N/A	18-Apr	1	99.66
+C14	N/A	N/A	C14_9_L001_R1_001.fastq.gz	16S_ON_B14	ONJF1-AT-2H	70	ON	AAFC Jordan Farm	Apricot	Hive	N/A	20-Apr	2	82.4
+C15	N/A	N/A	C15_9_L001_R1_001.fastq.gz	16S_ON_B15	ONJF1-AT-3H	71	ON	AAFC Jordan Farm	Apricot	Hive	N/A	23-Apr	3	80.91
+C16	N/A	N/A	C16_9_L001_R1_001.fastq.gz	16S_ON_B16	ONJF1-CH-1H	72	ON	AAFC Jordan Farm	Cherry	Hive	N/A	6-May	1	70.44
+C17	N/A	N/A	C17_9_L001_R1_001.fastq.gz	16S_ON_B17	ONJF1-CH-2H	73	ON	AAFC Jordan Farm	Cherry	Hive	N/A	6-May	2	41.44
+C18	N/A	N/A	C18_9_L001_R1_001.fastq.gz	16S_ON_B18	ONJF1-CH-3H	74	ON	AAFC Jordan Farm	Cherry	Hive	N/A	6-May	3	36.68
+C19	N/A	N/A	C19_9_L001_R1_001.fastq.gz	16S_ON_B19	ONJF1-PE-1H	75	ON	AAFC Jordan Farm	Peach	Hive	N/A	12-May	1	25.71
+C20	N/A	N/A	C20_9_L001_R1_001.fastq.gz	16S_ON_B20	ONJF1-PE-2H	76	ON	AAFC Jordan Farm	Peach	Hive	N/A	12-May	2	14.92
+C21	N/A	N/A	C21_9_L001_R1_001.fastq.gz	16S_ON_B21	ONJF1-PE-3H	77	ON	AAFC Jordan Farm	Peach	Hive	N/A	12-May	3	7.83
+C22	N/A	N/A	C22_9_L001_R1_001.fastq.gz	16S_ON_B22	ONJF1-AP-1H	78	ON	AAFC Jordan Farm	Apple	Hive	N/A	19-May	1	11.24
+C23	N/A	N/A	C23_9_L001_R1_001.fastq.gz	16S_ON_B23	ONJF1-AP-2H	79	ON	AAFC Jordan Farm	Apple	Hive	N/A	19-May	2	61.28
+C24	N/A	N/A	C24_9_L001_R1_001.fastq.gz	16S_ON_B24	ONJF1-AP-3H	80	ON	AAFC Jordan Farm	Apple	Hive	N/A	19-May	3	56.22
+C25	N/A	N/A	C25_9_L001_R1_001.fastq.gz	16S_ON_B25	ONJF1-AT-3P	81	ON	AAFC Jordan Farm	Apricot	Pollen	N/A	27-Apr	3	19.92
+C26	N/A	N/A	C26_9_L001_R1_001.fastq.gz	16S_ON_B26	ONJF1-AT-4P	82	ON	AAFC Jordan Farm	Apricot	Pollen	N/A	4-May	4	21.09
+C27	N/A	N/A	C27_9_L001_R1_001.fastq.gz	16S_ON_B27	ONJF1-CH-2P	83	ON	AAFC Jordan Farm	Cherry	Pollen	N/A	9-May	2	52.88
+C28	N/A	N/A	C28_9_L001_R1_001.fastq.gz	16S_ON_B28	ONJF1-CH-3P	84	ON	AAFC Jordan Farm	Cherry	Pollen	N/A	9-May	3	11.19
+C29	N/A	N/A	C29_9_L001_R1_001.fastq.gz	16S_ON_B29	ONJF1-CH-4P	85	ON	AAFC Jordan Farm	Cherry	Pollen	N/A	9-May	4	12.85
+C30	N/A	N/A	C30_9_L001_R1_001.fastq.gz	16S_ON_B30	ONJF1-PE-2P	86	ON	AAFC Jordan Farm	Peach	Pollen	N/A	12-May	2	82.39
+C31	N/A	N/A	C31_9_L001_R1_001.fastq.gz	16S_ON_B31	ONJF1-PE-3P	87	ON	AAFC Jordan Farm	Peach	Pollen	N/A	12-May	3	714.06
+C32	N/A	N/A	C32_9_L001_R1_001.fastq.gz	16S_ON_B32	ONJF1-PE-4P	88	ON	AAFC Jordan Farm	Peach	Pollen	N/A	12-May	4	105.82
+C33	N/A	N/A	C33_9_L001_R1_001.fastq.gz	16S_ON_B33	ONJF1-AP-2P	89	ON	AAFC Jordan Farm	Apple	Pollen	N/A	21-May	2	62.31
+C34	N/A	N/A	C34_9_L001_R1_001.fastq.gz	16S_ON_B34	ONJF1-AP-3P	90	ON	AAFC Jordan Farm	Apple	Pollen	N/A	21-May	3	83.82
+C35	N/A	N/A	C35_9_L001_R1_001.fastq.gz	16S_ON_B35	ONJF1-AP-4P	91	ON	AAFC Jordan Farm	Apple	Pollen	N/A	21-May	4	27.77
+C36	N/A	N/A	C36_9_L001_R1_001.fastq.gz	16S_ON_B36	ONLA2-BB-1B	92	ON	Lowbanks Blueberry knoll	Blueberry	Bread	N/A	20-May	1	54.73
+C37	N/A	N/A	C37_9_L001_R1_001.fastq.gz	16S_ON_B37	ONLA2-BB-2B	93	ON	Lowbanks Blueberry knoll	Blueberry	Bread	N/A	20-May	2	16.96
+C38	N/A	N/A	C38_9_L001_R1_001.fastq.gz	16S_ON_B38	ONLA2-BB-3B	94	ON	Lowbanks Blueberry knoll	Blueberry	Bread	N/A	21-May	3	20.21
+C39	N/A	N/A	C39_9_L001_R1_001.fastq.gz	16S_ON_B39	ONLA2-BB-1F	95	ON	Lowbanks Blueberry knoll	Blueberry	Forager	N/A	20-May	1	32.46
+C40	N/A	N/A	C40_9_L001_R1_001.fastq.gz	16S_ON_B40	ONLA2-BB-2F	96	ON	Lowbanks Blueberry knoll	Blueberry	Forager	N/A	20-May	2	30.12
+C41	N/A	N/A	C41_9_L001_R1_001.fastq.gz	16S_ON_B41	ONLA2-BB-3F	97	ON	Lowbanks Blueberry knoll	Blueberry	Forager	N/A	20-May	3	21.73
+C42	N/A	N/A	C42_9_L001_R1_001.fastq.gz	16S_ON_B42	ONSO2-BB-1F	98	ON	Simcoe Powells patch	Blueberry	Forager	N/A	24-May	1	65.24
+C43	N/A	N/A	C43_9_L001_R1_001.fastq.gz	16S_ON_B43	ONSO2-BB-2F	99	ON	 Simcoe Powells patch	Blueberry	Forager	N/A	24-May	2	29.93
+C44	N/A	N/A	C44_9_L001_R1_001.fastq.gz	16S_ON_B44	ONLA2-BB-1H	100	ON	Lowbanks Blueberry knoll	Blueberry	Hive	N/A	20-May	1	31.62
+C45	N/A	N/A	C45_9_L001_R1_001.fastq.gz	16S_ON_B45	ONLA2-BB-2H	101	ON	Lowbanks Blueberry knoll	Blueberry	Hive	N/A	20-May	2	65.29
+C46	N/A	N/A	C46_9_L001_R1_001.fastq.gz	16S_ON_B46	ONLA2-BB-3H	102	ON	Lowbanks Blueberry knoll	Blueberry	Hive	N/A	21-May	3	23.07
+C47	N/A	N/A	C47_9_L001_R1_001.fastq.gz	16S_ON_B47	ONLA2-BB-1P	103	ON	Lowbanks Blueberry knoll	Blueberry	Pollen	N/A	20-May	1	16.64
+C48	N/A	N/A	C48_9_L001_R1_001.fastq.gz	16S_ON_B48	ONLA2-BB-2P	104	ON	Lowbanks Blueberry knoll	Blueberry	Pollen	N/A	20-May	2	10.24
+C49	N/A	N/A	C49_9_L001_R1_001.fastq.gz	16S_ON_B49	ONLA2-BB-3P	105	ON	Lowbanks Blueberry knoll	Blueberry	Pollen	N/A	20-May	3	24.28
+C50	N/A	N/A	C50_9_L001_R1_001.fastq.gz	16S_ON_B50	ONWF1-AP-1B	106	ON	Vineland Warner Farms	Apple	Bread	N/A	13-May	1	60.93
+C51	N/A	N/A	C51_9_L001_R1_001.fastq.gz	16S_ON_B51	ONWF1-AP-2B	107	ON	Vineland Warner Farms	Apple	Bread	N/A	13-May	2	28.25
+C52	N/A	N/A	C52_9_L001_R1_001.fastq.gz	16S_ON_B52	ONWF1-AP-3B	108	ON	Vineland Warner Farms	Apple	Bread	N/A	13-May	3	48.29
+C53	N/A	N/A	C53_9_L001_R1_001.fastq.gz	16S_ON_B53	ONKB1-AP-1F	109	ON	Kinburn	Apple	Forager	N/A	19-May	1	20.38
+C54	N/A	N/A	C54_9_L001_R1_001.fastq.gz	16S_ON_B54	ONKB1-AP-2F	110	ON	Kinburn	Apple	Forager	N/A	19-May	2	19.84
+C55	N/A	N/A	C55_9_L001_R1_001.fastq.gz	16S_ON_B55	ONKB1-AP-3F	111	ON	Kinburn	Apple	Forager	N/A	19-May	3	37.56
+C56	N/A	N/A	C56_9_L001_R1_001.fastq.gz	16S_ON_B56	ONVWF-AP-1F	112	ON	Vineland Warner Farms	Apple	Forager	N/A	13-May	1	80.63
+C57	N/A	N/A	C57_9_L001_R1_001.fastq.gz	16S_ON_B57	ONWF2-AP-2F	113	ON	Vineland Warner Farms	Apple	Forager	N/A	13-May	2	31.94
+C58	N/A	N/A	C58_9_L001_R1_001.fastq.gz	16S_ON_B58	ONWF2-AP-3F	114	ON	Vineland Warner Farms	Apple	Forager	N/A	13-May	3	10.83
+C59	N/A	N/A	C59_9_L001_R1_001.fastq.gz	16S_ON_B59	ONKB1-AP-1H	115	ON	Kinburn	Apple	Hive	N/A	19-May	1	8.74
+C60	N/A	N/A	C60_9_L001_R1_001.fastq.gz	16S_ON_B60	ONKB1-AP-2H	116	ON	Kinburn	Apple	Hive	N/A	19-May	2	54.93
+C61	N/A	N/A	C61_9_L001_R1_001.fastq.gz	16S_ON_B61	ONKB1-AP-3H	117	ON	Kinburn	Apple	Hive	N/A	19-May	3	23.75
+C62	N/A	N/A	C62_9_L001_R1_001.fastq.gz	16S_ON_B62	ONWF2-AP-1H	118	ON	Vineland Warner Farms	Apple	Hive	N/A	13-May	1	48.97
+C63	N/A	N/A	C63_9_L001_R1_001.fastq.gz	16S_ON_B63	ONWF2-AP-2H	119	ON	Vineland Warner Farms	Apple	Hive	N/A	13-May	2	32.33
+C64	N/A	N/A	C64_9_L001_R1_001.fastq.gz	16S_ON_B64	ONWF2-AP-3H	120	ON	Vineland Warner Farms	Apple	Hive	N/A	13-May	3	84.93
+C65	N/A	N/A	C65_9_L001_R1_001.fastq.gz	16S_ON_B65	ONKB1-AP-1P	121	ON	Kinburn	Apple	Pollen	N/A	19-May	1	149.12
+C66	N/A	N/A	C66_9_L001_R1_001.fastq.gz	16S_ON_B66	ONKB1-AP-2P	122	ON	Kinburn	Apple	Pollen	N/A	19-May	2	35.02
+C67	N/A	N/A	C67_9_L001_R1_001.fastq.gz	16S_ON_B67	ONKB1-AP-3P	123	ON	Kinburn	Apple	Pollen	N/A	19-May	3	28.01
+C68	N/A	N/A	C68_9_L001_R1_001.fastq.gz	16S_ON_B68	ONKB1-AP-1B	124	ON	Kinburn	Apple	Bread	N/A	19-May	1	75.74
+C69	N/A	N/A	C69_9_L001_R1_001.fastq.gz	16S_ON_B69	ONKB1-AP-2B	125	ON	Kinburn	Apple	Bread	N/A	19-May	2	42.59
+C70	N/A	N/A	C70_9_L001_R1_001.fastq.gz	16S_ON_B70	ONKB1-AP-3B	126	ON	Kinburn	Apple	Bread	N/A	19-May	3	90.28
+C71	N/A	N/A	C71_9_L001_R1_001.fastq.gz	16S_ON_B71	ON-Ecoli-CNTRL	127	ON	Control	Kit	Kit	N/A	N/A	Lot Number 2108062	N/A
+D01	N/A	N/A	D01_9_L001_R1_001.fastq.gz	16S_Can_1	IRIA21_Pollen-1	128	AB	Halcourt	Canola	Pollen	N/A	28-Jul-20	Pollen Trap on 1 colony - Unsorted	32.6
+D02	N/A	N/A	D02_9_L001_R1_001.fastq.gz	16S_Can_2	IRIA21_Pollen-2	129	AB	Halcourt	Canola	Pollen	N/A	31-Jul-20	Pollen Trap on 1 colony - Unsorted	20.6
+D03	N/A	N/A	D03_9_L001_R1_001.fastq.gz	16S_Can_3	IRIA21_Pollen-3	130	AB	Halcourt	Canola	Pollen	N/A	7-Aug-20	Pollen Trap on 1 colony - Unsorted	24.3
+D04	N/A	N/A	D04_9_L001_R1_001.fastq.gz	16S_Can_4	IRIA21_Pollen-4	131	AB	Halcourt	Canola	Pollen 	N/A	7-Aug-20	Pollen Trap on 1 colony - Sorted; -20 C Storage	38.1
+D05	N/A	N/A	D05_9_L001_R1_001.fastq.gz	16S_Can_5	IRIA21_Pollen-5	132	AB	Halcourt	Canola	Pollen	N/A	31-Jul-20	Pollen Trap on 1 colony - Unsorted	14.1
+D06	N/A	N/A	D06_9_L001_R1_001.fastq.gz	16S_Can_6	IRIA21_PF -1	133	AB	Halcourt	Canola	Pollen Foragers	N/A	28-Jul-20	From 3 colonies.  Foragers w/ canola pollen.	44
+D07	N/A	N/A	D07_9_L001_R1_001.fastq.gz	16S_Can_7	IRIA21_Br-1	134	AB	Halcourt	Canola	Bee Bread	N/A	31-Jul-20	Collected from 3 colonies.	7.8
+D08	N/A	N/A	D08_9_L001_R1_001.fastq.gz	16S_Can_8	IRIA21_Br-2	135	AB	Halcourt	Canola	Bee Bread	N/A	31-Jul-20	Collected from 3 colonies.	9.3
+D09	N/A	N/A	D09_9_L001_R1_001.fastq.gz	16S_Can_9	IRIA21_Flowers-1	136	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	32.3
+D10	N/A	N/A	D10_9_L001_R1_001.fastq.gz	16S_Can_10	IRIA21_Flowers-2	137	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	19.4
+D11	N/A	N/A	D11_9_L001_R1_001.fastq.gz	16S_Can_11	IRIA21_Flowers-3	138	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	79.7
+D12	N/A	N/A	D12_9_L001_R1_001.fastq.gz	16S_Can_12	IRIA21_Flowers-4	139	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	67.4
+D13	N/A	N/A	D13_9_L001_R1_001.fastq.gz	16S_Can_13	IRIA21_Flowers-5	140	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	49.1
+D14	N/A	N/A	D14_9_L001_R1_001.fastq.gz	16S_Can_14	IRIA21_Flowers-6	141	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	53.9
+D15	N/A	N/A	D15_9_L001_R1_001.fastq.gz	16S_Can_15	IRIA21_Flowers-7	142	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	12.6
+D16	N/A	N/A	D16_9_L001_R1_001.fastq.gz	16S_Can_16	IRIA21_Flowers-8	143	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	47
+D17	N/A	N/A	D17_9_L001_R1_001.fastq.gz	16S_Can_17	IRIA21_Flowers-9	144	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	45.9
+D18	N/A	N/A	D18_9_L001_R1_001.fastq.gz	16S_Can_18	IRIA21_Flowers-10	145	AB	Halcourt	Canola	Canola Inflorescence	N/A	7-Aug-20	Collected from unique plant	20.7
+D19	N/A	N/A	D19_9_L001_R1_001.fastq.gz	16S_Can_19	IRIA21_Leaves-1	146	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	10.3
+D20	N/A	N/A	D20_9_L001_R1_001.fastq.gz	16S_Can_20	IRIA21_Leaves-2	147	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	20.6
+D21	N/A	N/A	D21_9_L001_R1_001.fastq.gz	16S_Can_21	IRIA21_Leaves-3	148	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	12.9
+D22	N/A	N/A	D22_9_L001_R1_001.fastq.gz	16S_Can_22	IRIA21_Leaves-4	149	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	10.5
+D23	N/A	N/A	D23_9_L001_R1_001.fastq.gz	16S_Can_23	IRIA21_Leaves-5	150	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	49.1
+D24	N/A	N/A	D24_9_L001_R1_001.fastq.gz	16S_Can_24	IRIA21_Leaves-6	151	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	24.7
+D25	N/A	N/A	D25_9_L001_R1_001.fastq.gz	16S_Can_25	IRIA21_Leaves-7	152	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	13.9
+D26	N/A	N/A	D26_9_L001_R1_001.fastq.gz	16S_Can_26	IRIA21_Leaves-8	153	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	33.3
+D27	N/A	N/A	D27_9_L001_R1_001.fastq.gz	16S_Can_27	IRIA21_Leaves-9	154	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	26.9
+D28	N/A	N/A	D28_9_L001_R1_001.fastq.gz	16S_Can_28	IRIA21_Leaves-10	155	AB	Halcourt	Canola	Canola Leaves	N/A	7-Aug-20	Collected from unique plant	15
+D29	N/A	N/A	D29_9_L001_R1_001.fastq.gz	16S_Can_29	IRIA21_Bees-1	156	AB	Halcourt	Canola	Bees	N/A	N/A	N/A	34.3
+D30	N/A	N/A	D30_9_L001_R1_001.fastq.gz	16S_Can_30	IRIA21_Bees-2	157	AB	Halcourt	Canola	Bees	N/A	N/A	N/A	36.2
+D31	N/A	N/A	D31_9_L001_R1_001.fastq.gz	16S_Can_31	IRIA21_Bees-3	158	AB	Halcourt	Canola	Bees	N/A	N/A	N/A	35.6
