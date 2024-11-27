@@ -17,7 +17,8 @@ The pipeline is broken down into 3 chapters which can be viewed as github md fil
 - Metadata Analysis
 
 ## $${\color{red}Chapter\space 3}$$ : Metagenomics Analysis on *Bacterial* Communities in Stone Fruit Ecosystems in Canada 
-- Markdown file in development for chapter 3.. coming soon 
+- Markdown file in development for chapter 3.. coming soon
+- Chapter 4 in RMD format is available for bacterial applications on blueberry Ion Torrent data 
 
 ## List of Abbreviations
 - PS - Phyloseq
