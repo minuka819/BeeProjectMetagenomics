@@ -1,59 +1,109 @@
 ---
-title: "Stonefruit_Chapter1"
-author: "MInuka"
+title: "Metagenomics Analysis on Fungal and Bacterial Communities in Stone Fruit Ecosystems in Canada"
+author: "Minuka Hewapathirana"
+coauthor:  "Herve Van de Hayden"
 date: "2024-07-19"
-output: html_document
+output: github_document
 ---
 
-Metadata and Sampling Counts
+Image is loaded from Ch1_Setup.md , thus we have to remove a number of PS objects and retain only applicable PS Objects for this analysis
 
-```{r}
-#Remove unncessary PS objects first to start ITS1 workflow 
+This chunk is hidden, just performing some checks here 
+
+```{r Metadata Checking and saving, echo=FALSE, results= FALSE, warning= FALSE, message= FALSE, eval = FALSE}
+
+#Image is loaded from Ch1_Setup.md , thus we have to remove a number of PS objects and retain only applicable PS Objects for this analysis
+#This chunk is hidde, just performing some checks here 
+#Remove unnecessary 16S PS objects first to start ITS1 workflow 
 
 rm(PS_16S_BC_ON,PS_16S_BC_ON_BB,PS_16S_BC_ON_SF,PS_16S_Global)
-
 
 m_ITS1R_BC_ON_SF<-meta(PS_ITS1R_BC_ON_SF)
 
 meta_global
 
+#PS Object containing data from BC and Stone Fruits only 
 m_ITS1R_BC_SF<-meta(subset_samples(PS_ITS1R_BC_ON_SF,Province =="BC"))
 
 #Saving metadata to create visualizations
 write.csv(m_ITS1R_BC_SF, file="D:\\Grad_School\\Grad_Project\\Outputs\\Metadata\\metadata_ITS1R_BC_SF.csv")
 
+# PS Object containing data from ON and Stone Fruits only 
 m_ITS1R_ON_SF<-meta(subset_samples(PS_ITS1R_BC_ON_SF,Province =="ON"))
-
 
 write.csv(m_ITS1R_ON_SF, file="D:\\Grad_School\\Grad_Project\\Outputs\\Metadata\\metadata_ITS1R_ON_SF.csv")
 
 ```
+Investigation of Fungal Diversity in Stone Fruit Samples in BC and ON 
+---
+### (1) Loading Packages 
 
-------------- Section 1 : Fungal Detections in Stone Fruit Farms ---------------------------
+A comprehensive list of packages required to perform metagenomics analysis for *ION torrent* data
+```{r Setup, echo=TRUE, results='asis', warning= FALSE, message= FALSE}
+library("knitr")
+library("qiime2R") # devtools::install_github("jbisanz/qiime2R")
+library("phyloseq")
+library("readxl")      
+library("tibble")
+library("vegan")
+library("DESeq2") #BiocManager::install("DESeq2")
+library("speedyseq") # remotes::install_github("mikemc/speedyseq") 
+library("ape")
+library("ggstar")
+library("forcats")
+library("patchwork")
+library("ggpubr")
+library("plotROC")
+library("viridis")
+library("cowplot")
+library("ggplot2")
+library("microbiome") # BiocManager::install("microbiome")
+library("microbiomeutilities")
+
+library("ggtree") # BiocManager::install("ggtree")
+library("ggtreeExtra") #install.packages("ggExtra")
+library('MicrobiotaProcess') # BiocManager::install("MicrobiotaProcess")
+#library("tidytree")
+library("file2meco")
+library("microeco")
+
+```
+### (2) Read Depth Analysis 
+
+Observe read depth to make informed decisions about normalization or standardization of data 
 
 Check the read depth 
 Check for singletons 
-```{r}
+```{r SF Read Depth Analysis, echo=TRUE, results= 'asis', warning= FALSE, message= FALSE}
 
-#load
+#load data from previous Ch1_Setup 
 load("D:\\Grad_School\\R_Projects\\BeeProject_Metagenomics\\Images\\Setup.RData")
 
+#Remove unnessecary PSObjects
+rm(PS_16S_BC_ON,PS_16S_BC_ON_BB,PS_16S_BC_ON_SF,PS_16S_Global)
+
+#visualize the objects
 PS_ITS1R_BC_ON_SF
 meta(PS_ITS1R_BC_ON_SF)
-#Read depth analysis for original samples
+
+#Read depth analysis processing
 Read_Depth_PS_ITS1R_BC_ON_SF<-plot_read_distribution(PS_ITS1R_BC_ON_SF, groups = "Province", 
                              plot.type = "histogram")+
   theme_biome_utils()+
   scale_x_continuous(trans='log10')+
   scale_fill_manual(values=c("#111111"))+ 
-  geom_vline(xintercept = 1000, colour = "black", linetype="dashed")+
   theme(legend.position="none")+
-  labs(x = "", y = "Count")
+  labs(title = "Read Histogram Distribution",x = "Number of Reads", y = "Count")
 
+#Visualize
 Read_Depth_PS_ITS1R_BC_ON_SF
 
-PS_ITS1R_BC_ON_SF
+#Summarize the PS Object
 summarize_phyloseq(PS_ITS1R_BC_ON_SF)
+
+```
+
+```{r SF Singleton Analysis, echo=TRUE, message=FALSE, warning=FALSE, results='markup', eval=FALSE}
 
 #Number of singletons = 4563
 
@@ -73,7 +123,7 @@ temp_taxtable_investigate_ecoli
 
 
 Check for Ubiquitous Fungi and remove them 
-```{r Removal and Reabundance - BCC, echo=FALSE, eval=TRUE, include=FALSE, cache=TRUE}
+```{r SF Removal and Reabundance - BCC, echo=FALSE, eval=TRUE, include=FALSE, cache=TRUE,eval=FALSE}
 
 top_taxa(PS_ITS1R_BC_ON_SF_Pruned)
 
@@ -121,8 +171,87 @@ TopTaxa_ITS1R_BC_ON_SF_Filtered
 
 ```
 
-Diversity analysis 
-```{r Alpha , Shannon and Pileou Analysis}
+Experimental diversity analysis _ mk1  
+
+```{r SF -experimental Diversity Analysis,eval=FALSE} 
+
+PS_ITS1R_BC_ON_SF_Filtered
+# Alpha diversity -> microbiotaprocess    #####
+
+alphaobj_Stonefruit<- get_alphaindex(PS_ITS1R_BC_ON_SF_Filtered)
+
+removed_bee_fungal_pathogens<- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Species!="Ascosphaera_apis")
+removed_bee_fungal_pathogens<- subset_taxa(removed_bee_fungal_pathogens, Species!="Bettsia_alvei")
+
+test <- as.data.frame(phyloseq::tax_table(removed_bee_fungal_pathogens))
+
+removed_test <- get_alphaindex(removed_bee_fungal_pathogens)
+
+##### violon_plots (Status) ######
+
+Observe_status_SampleType <- ggbox(alphaobj_BC, 
+                        geom="violin", 
+                        factorNames="Sample.type",   
+                        compare = TRUE,
+                        testmethod = "wilcox.test",
+                        signifmap = TRUE,
+                        indexNames="Observe")+ 
+  labs(title = "Observed Fungal Alpha Diversity by Sample Type") + ylab("Observed Features per Sample") + xlab("\n Sample Type")+
+  theme(aspect.ratio = 0.5)+
+  theme(text = element_text(size = 12))+
+  theme( legend.position="none")+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#ECA1F6",
+                                      "#1B9E77", 
+                                      "#FD9347"))
+
+Observe_status_SampleType
+
+
+#####################################################
+
+# Try to see different sample type distributions in BC vs ON 
+
+BC_samples <- subset_samples(PS_ITS1R_BC_ON_SF_Filtered, Province=="BC")
+ON_samples <- subset_samples(PS_ITS1R_BC_ON_SF_Filtered, Province=="ON")
+
+alphaobj_BC<- get_alphaindex(BC_samples)
+
+alphaobj_ON<- get_alphaindex(ON_samples)
+
+Observe_status <- ggbox(alphaobj_BC, 
+                        geom="violin", 
+                        factorNames="Sample.type",   
+                        compare = TRUE,
+                        testmethod = "wilcox.test",
+                        signifmap = TRUE,
+                        indexNames="Observe")+ 
+  labs(title = "Alpha Observed - Fungal - BC") + ylab("Observed Features per Sample") + xlab("\nSample Type")+
+  theme(aspect.ratio = 0.5)+
+  theme(text = element_text(size = 12))+
+  theme( legend.position="none")+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#ECA1F6",
+                                      "#1B9E77", 
+                                      "#FD9347"))
+
+
+Observe_status
+plot_grid(Observe_status+theme(legend.position="none"),
+          align="vh",
+          hjust = -1,
+          vjust= 3.5,
+          ncol=1)
+
+
+```
+
+
+```{r SF - Alpha Analysis,eval=FALSE}
 
 PS_ITS1R_BC_ON_SF_Filtered
 # Alpha diversity -> microbiotaprocess    #####
@@ -140,23 +269,28 @@ Observe_status <- ggbox(alphaobj_Stonefruit,
                         testmethod = "wilcox.test",
                         signifmap = TRUE,
                         indexNames="Observe")+ 
+  labs(title = "Observed Fungal Alpha Diversity by Provinces") + ylab("Observed Features per Sample") + xlab("Province")+
   theme(aspect.ratio = 0.5)+
+  theme(text = element_text(size = 12))+
   theme( legend.position="none")+
   theme(strip.background = element_rect(colour=NA, fill="grey"))+
   scale_fill_manual(values=c("#990038", 
                                       "#01AED9",
-                                      "#999999",
+                                      "#000000",
                                       "#1B9E77", 
                                       "#000033", 
                                       "#FD9347"))
-                                      
+
+Observe_status
+
 Shannon_status<- ggbox(alphaobj_Stonefruit, 
                        geom="violin", 
                        factorNames="Province",   
                        compare = TRUE, 
                        testmethod = "wilcox.test",
                        signifmap = TRUE,
-                       indexNames="Shannon")+ 
+                       indexNames="Shannon")+
+  labs(title = "Shannon Diversity") + ylab("Observed Features") + xlab("Province")+
   theme(legend.position="Bottom")+
   theme(aspect.ratio = 0.5)+
   theme(strip.background = element_rect(colour=NA, fill="grey"))+
@@ -184,7 +318,9 @@ Pielou_status<- ggbox(alphaobj_Stonefruit,
                                       "#1B9E77", 
                                       "#000033", 
                                       "#FD9347"))
-                                      
+
+
+                                     
 plot_grid(Observe_status+theme(legend.position="none"),
           Shannon_status+theme(legend.position="none"),
           align="vh",
@@ -207,7 +343,7 @@ plot_grid(Observe_status+theme(legend.position="none"),
 
 General Heat Map 
 
-```{r Heat Map }
+```{r SF- Heat Map,eval=FALSE}
 
 #General HeatMap 
 
@@ -226,12 +362,12 @@ Heatmap_SF$plot_heatmap(facet = c("Province","Sample.type"),
                 withmargin = TRUE)
 
 #BC and ON stone fruit separated metadata
-PS_BC_Only_SF <- subset_samples(PS_BC_ON_SF, Province == "BC")
+PS_BC_Only_SF <- subset_samples(PS_ITS1R_BC_ON_SF, Province == "BC")
 
 meta(PS_BC_Only_SF)
 #82 Rows for the BC subset 
 
-PS_ON_Only_SF <- subset_samples(PS_BC_ON_SF, Province == "ON")
+PS_ON_Only_SF <- subset_samples(PS_ITS1R_BC_ON_SF, Province == "ON")
 
 meta(PS_ON_Only_SF)
 #56 Rows
@@ -241,7 +377,7 @@ meta(PS_ON_Only_SF)
 Specific Pathogen Screening
 
 Penicillium Expansum 
-```{r Stone fruits - ON and BC -  Penicillium Expansum - Blue Mold  ,echo=FALSE}
+```{r SF - ON and BC -  Penicillium Expansum - Blue Mold  ,echo=FALSE,eval=FALSE}
 
 PS_ITS1R_Penicillium <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Genus == "Penicillium")
 
@@ -262,7 +398,7 @@ plot_tree(tax_glom(PS_ITS1R_Penicillium,
 ```
 
 ALternaria Prunicola
-```{r Stone fruits - ALternaria Prunicola }
+```{r SF - ALternaria Prunicola }
 PS_ITS1R_Pleosporaceae <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Family =="Pleosporaceae")
 
 summarize_phyloseq(PS_ITS1R_Pleosporaceae)
@@ -299,12 +435,27 @@ b1_ITS2_BC_ON_SF_Pleosporaceae$plot_heatmap(facet = c("Province","Sample.type"),
 
 ```
 
-```{r Stone fruits - ON and BC -  Monilinia Group}
-PS_ITS1R_Pleosporaceae <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Family =="Sclerotiniaceae")
+```{r SF - ON and BC -  Monilinia Group}
+PS_ITS1R_Sclero <- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Family =="Sclerotiniaceae")
 
 summarize_phyloseq(PS_ITS1R_Pleosporaceae)
 
-plot_tree(tax_glom(PS_ITS1R_Pleosporaceae, 
+plot_tree(tax_glom(PS_ITS1R_Sclero, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="Plant", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+plot_tree(tax_glom(PS_ITS1R_Sclero, 
                    taxrank="Species"),
           method = "sampledodge",
           ladderize="left",
@@ -339,7 +490,7 @@ summarize_phyloseq(PS_ITS2_BC_ON_SF_Sclerotiniaceae)
 
 ```
 
-```{r Stone fruits - ON and BC -  Podosphaera Leucotricha  }
+```{r SF - ON and BC -  Podosphaera Leucotricha  }
 
 PS_ITS2_BC_ON_SF_Erysiphaceae <- subset_taxa(PS_BC_ON_SF, Family == "Erysiphaceae")
 
@@ -376,7 +527,7 @@ b1_ITS2_BC_ON_SF_Erysiphaceae$plot_heatmap(facet = c("Province","Sample.type"),
                 withmargin = TRUE)
 ```
 
-```{r Stone fruits - ON and BC -  Cytospora Cinnaem }
+```{r SF - ON and BC -  Cytospora Cinnaem }
 
 Valsaceae family
 
@@ -421,7 +572,7 @@ metadata_BC_ON_SF <- meta(PS_BC_ON_SF)
 metadata_BC_ON_SF
 ```
 
-```{r Stone fruits - ON and BC -  Ascosphaera Apis}
+```{r SF - ON and BC -  Ascosphaera Apis}
 
 ##BEE PATHOGENS
 
@@ -462,7 +613,7 @@ b1_ITS2_BC_ON_SF_Ascosphaeraceae$plot_heatmap(facet = c("Province","Plant","Samp
 
 ```
 
-```{r  Stone fruits - ON and BC -  Betssia Alvei}
+```{r SF - ON and BC -  Betssia Alvei}
 
 PS_ITS2_BC_ON_SF_Pseudeurotiaceae <- subset_taxa(PS_BC_ON_SF, Family == "Pseudeurotiaceae")
 
@@ -517,20 +668,20 @@ meta_16S <- meta(PS_16S_BC_ON_SF)
 
 temp_ITS1R <-meta(PS_ITS1R_BC_ON_SF)
 #Read depth analysis for original samples
-Read_Depth_PS_16S_BC_ON_SF<-plot_read_distribution(PS_16S_BC_ON_SF_Pruned, groups = "Province", 
+Read_Depth_PS_16S_BC_ON_SF<-plot_read_distribution(PS_16S_BC_ON_SF_Filtered, groups = "Province", 
                              plot.type = "histogram")+
   theme_biome_utils()+
   scale_x_continuous(trans='log10')+
   scale_fill_manual(values=c("#111111"))+ 
-  geom_vline(xintercept = 500, colour = "black", linetype="dashed")+
   theme(legend.position="none")+
-  labs(x = "", y = "Count")
+  labs(title = "Read Histogram Distribution - 16S/Bacterial",x = "Number of Reads", y = "Count")
 
 Read_Depth_PS_16S_BC_ON_SF
 
 
 summarize_phyloseq(PS_16S_BC_ON_SF)
 
+PS_16S_BC_ON_SF
 #Number of singletons = 4563
 
 #We need to remove the so we remove any taxa sums that are less than 10 reads 
@@ -546,11 +697,12 @@ Diversity analysis
 PS_PS_16S_BC_ON_SF_Filtered
 # Alpha diversity -> microbiotaprocess    #####
 
-alphaobj_16S_Stonefruit<- get_alphaindex(PS_16S_BC_ON_SF_Pruned)
+alphaobj_16S_Stonefruit<-get_alphaindex(PS_16S_BC_ON_SF_Filtered)
 #alphaobj2_PS_Global<-as.data.frame(alphaobj_PS_Global)
 #head(alphaobj2_PS_Global)
 
 ##### violon_plots (Status) ######
+
 
 Observe_status <- ggbox(alphaobj_16S_Stonefruit, 
                         geom="violin", 
@@ -559,15 +711,23 @@ Observe_status <- ggbox(alphaobj_16S_Stonefruit,
                         testmethod = "wilcox.test",
                         signifmap = TRUE,
                         indexNames="Observe")+ 
+  labs(title = "Observed Alpha Diversity - Bacterial/16S") + ylab("Observed Features") + xlab("Province")+
   theme(aspect.ratio = 0.5)+
   theme( legend.position="none")+
   theme(strip.background = element_rect(colour=NA, fill="grey"))+
   scale_fill_manual(values=c("#990038", 
                                       "#01AED9",
-                                      "#999999",
+                                      "#000000",
                                       "#1B9E77", 
                                       "#000033", 
                                       "#FD9347"))
+
+
+plot_grid(Observe_status+theme(legend.position="none"),
+          align="vh",
+          hjust = -1,
+          vjust= 3.5,
+          ncol=1)   
                                       
 Shannon_status<- ggbox(alphaobj_16S_Stonefruit, 
                        geom="violin", 
@@ -604,6 +764,8 @@ Pielou_status<- ggbox(alphaobj_16S_Stonefruit,
                                       "#000033", 
                                       "#FD9347"))
 
+
+  
 
 plot_grid(Observe_status+theme(legend.position="none"),
           Shannon_status+theme(legend.position="none"),
