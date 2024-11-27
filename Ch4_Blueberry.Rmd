@@ -19,10 +19,6 @@ m_ITS1R_ON_BB<-meta(subset_samples(PS_ITS1R_BC_ON_BB,Province =="ON"))
 
 write.csv(m_ITS1R_ON_BB, file="D:\\Grad_School\\Grad_Project\\Outputs\\Metadata\\metadata_ITS1R_ON_BB.csv")
 
-
-
-
-
 ```
 
 ------------- Section 1 : Fungal Detections in BB Farms ---------------------------
@@ -52,9 +48,10 @@ PS_ITS1R_BC_ON_BB
 summarize_phyloseq(PS_ITS1R_BC_ON_BB)
 
 #Number of singletons = 4563
+PS_ITS1R_BC_ON_BB
 
 #We need to remove the so we remove any taxa sums that are less than 10 reads 
-PS_ITS1R_BC_ON_BB_Pruned = prune_taxa(taxa_sums(PS_ITS1R_BC_ON_BB) > 02, PS_ITS1R_BC_ON_BB)
+PS_ITS1R_BC_ON_BB_Pruned = prune_taxa(taxa_sums(PS_ITS1R_BC_ON_BB) > 01, PS_ITS1R_BC_ON_BB)
 
 PS_ITS1R_BC_ON_BB_Pruned
 
@@ -95,6 +92,8 @@ PS_ITS1R_BC_ON_BB_Filtered <- subset_taxa(PS_ITS1R_BC_ON_BB_Filtered, Phylum!="N
 
 PS_ITS1R_BC_ON_BB_Filtered
 
+Taxa_Table_ITS1R_BC_ON_SF_Filtered<- as.data.frame(phyloseq::tax_table(PS_ITS1R_BC_ON_BB_Filtered))
+
 ### Did removal work ###
 
 classtaxa_ITS1R_BC_ON_BB_Filtered <- get_taxadf(obj=PS_ITS1R_BC_ON_BB_Filtered, taxlevel=7)
@@ -110,6 +109,97 @@ TopTaxa_ITS1R_BC_ON_BB_Filtered<- ggbartax(obj=classtaxa_ITS1R_BC_ON_BB_Filtered
 TopTaxa_ITS1R_BC_ON_BB_Filtered
 
 ```
+
+Experimental diversity analysis _ mk1  
+
+```{r experimental Diversity Analysis} 
+
+PS_ITS1R_BC_ON_BB_Filtered
+# Alpha diversity -> microbiotaprocess    #####
+
+alphaobj_BB<- get_alphaindex(PS_ITS1R_BC_ON_BB_Filtered)
+
+withough_wild_Forage <- subset_samples(PS_ITS1R_BC_ON_BB_Filtered, Plant!="Wild forage")
+
+removed_bee_fungal_pathogens<- subset_taxa(PS_ITS1R_BC_ON_SF_Filtered, Species!="Ascosphaera_apis")
+removed_bee_fungal_pathogens<- subset_taxa(removed_bee_fungal_pathogens, Species!="Bettsia_alvei")
+
+test <- as.data.frame(phyloseq::tax_table(removed_bee_fungal_pathogens))
+
+alphaobj_Stonefruit_withoutwildforage <- get_alphaindex(withough_wild_Forage)
+
+
+withough_wild_Forage_metadata <- as.data.frame(meta(withough_wild_Forage))
+##### violon_plots (Status) ######
+
+
+Observe_status_SampleType <- ggbox(alphaobj_Stonefruit, 
+                        geom="violin", 
+                        factorNames="Sample.type",   
+                        compare = TRUE,
+                        testmethod = "wilcox.test",
+                        signifmap = TRUE,
+                        indexNames="Observe")+ 
+  labs(title = "Observed Fungal Alpha Diversity by Sample Type") + ylab("Observed Features per Sample") + xlab("\nSample Type")+
+  theme(aspect.ratio = 0.5)+
+  theme(text = element_text(size = 12))+
+  theme( legend.position="none")+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#ECA1F6",
+                                      "#1B9E77", 
+                                      "#FD9347"))
+
+Observe_status_SampleType
+
+```
+
+```{r}
+
+# Try to see different sample type distributions in BC vs ON 
+
+BC_samples <- subset_samples(withough_wild_Forage, Province=="BC")
+ON_samples <- subset_samples(withough_wild_Forage, Province=="ON")
+
+meta(withough_wild_Forage)
+summarize_phyloseq(BC_samples)
+summarize_phyloseq(ON_samples)
+
+
+alphaobj_BC<- get_alphaindex(BC_samples)
+
+alphaobj_ON<- get_alphaindex(ON_samples)
+
+Observe_status <- ggbox(alphaobj_BC, 
+                        geom="violin", 
+                        factorNames="Province",   
+                        compare = TRUE,
+                        testmethod = "wilcox.test",
+                        signifmap = TRUE,
+                        indexNames="Observed")+ 
+  labs(title = "Alpha Observed - Fungal - BC") + ylab("Observed Features") + xlab("Province")+
+  theme(aspect.ratio = 0.5)+
+  theme(text = element_text(size = 18))+
+  theme( legend.position="none")+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#000000",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+
+plot_grid(Observe_status+theme(legend.position="none"),
+          align="vh",
+          hjust = -1,
+          vjust= 3.5,
+          ncol=1)
+
+
+```
+
+
 Diversity analysis 
 ```{r Alpha , Shannon and Pileou Analysis}
 
@@ -122,75 +212,25 @@ alphaobj_Blueberry<- get_alphaindex(PS_ITS1R_BC_ON_BB_Filtered)
 
 ##### violon_plots (Status) ######
 
-Observe_status <- ggbox(alphaobj_Blueberry, 
+Observe_status_Province <- ggbox(alphaobj_Stonefruit_withoutwildforage, 
                         geom="violin", 
                         factorNames="Province",   
                         compare = TRUE,
                         testmethod = "wilcox.test",
                         signifmap = TRUE,
                         indexNames="Observe")+ 
+  labs(title = "Observed Fungal Alpha Diversity by Province") + ylab("Observed Features per Sample") + xlab("\n Province")+
   theme(aspect.ratio = 0.5)+
+  theme(text = element_text(size = 12))+
   theme( legend.position="none")+
   theme(strip.background = element_rect(colour=NA, fill="grey"))+
   scale_fill_manual(values=c("#990038", 
                                       "#01AED9",
-                                      "#999999",
+                                      "#ECA1F6",
                                       "#1B9E77", 
-                                      "#000033", 
                                       "#FD9347"))
-                                      
-Shannon_status<- ggbox(alphaobj_Blueberry, 
-                       geom="violin", 
-                       factorNames="Province",   
-                       compare = TRUE, 
-                       testmethod = "wilcox.test",
-                       signifmap = TRUE,
-                       indexNames="Shannon")+ 
-  theme(legend.position="Bottom")+
-  theme(aspect.ratio = 0.5)+
-  theme(strip.background = element_rect(colour=NA, fill="grey"))+
-  scale_fill_manual(values=c("#990038", 
-                                      "#01AED9",
-                                      "#999999",
-                                      "#1B9E77", 
-                                      "#000033", 
-                                      "#FD9347"))
-                                      
 
-Pielou_status<- ggbox(alphaobj_Blueberry, 
-                      geom="violin", 
-                      factorNames="Province",   
-                      compare = TRUE, 
-                      testmethod = "wilcox.test",
-                      signifmap = TRUE,
-                      indexNames="Pielou")+ 
-  theme(legend.position="Bottom")+
-  theme(aspect.ratio = 0.5)+
-  theme(strip.background = element_rect(colour=NA, fill="grey"))+
-  scale_fill_manual(values=c("#990038", 
-                                      "#01AED9",
-                                      "#999999",
-                                      "#1B9E77", 
-                                      "#000033", 
-                                      "#FD9347"))
-                                      
-plot_grid(Observe_status+theme(legend.position="none"),
-          Shannon_status+theme(legend.position="none"),
-          align="vh",
-          labels = c("A", "B"),
-          hjust = -1,
-          vjust= 3.5,
-          ncol=1)
-
-
-plot_grid(Observe_status+theme(legend.position="none"),
-          Shannon_status+theme(legend.position="none"),
-          Pielou_status+theme(legend.position="none"),
-          align="vh",
-          labels = c("A", "B", 'C'),
-          hjust = -1,
-          vjust= 3.5,
-          ncol=1)
+Observe_status_Province
 
 ```
 
@@ -251,8 +291,6 @@ plot_tree(tax_glom(PS_ITS1R_Sclerotiniaceae,
   scale_size_continuous(range = c(0.0001, 4))
 
 
-
-
 meco_ITS2_BC_ON_SF_Sclerotiniaceae<- phyloseq2meco(PS_ITS2_BC_ON_SF_Sclerotiniaceae)
 
  
@@ -305,19 +343,160 @@ PS_ITS1R_BC_ON_SF
 
 summarize_phyloseq(PS_16S_BC_ON_SF)
 
+
+PS_16S_BC_ON_BB
 #Number of singletons = 4563
 
 #We need to remove the so we remove any taxa sums that are less than 10 reads 
-PS_16S_BC_ON_BB_Pruned = prune_taxa(taxa_sums(PS_16S_BC_ON_BB) > 02, PS_16S_BC_ON_BB)
+PS_16S_BC_ON_BB_Pruned = prune_taxa(taxa_sums(PS_16S_BC_ON_BB) > 01, PS_16S_BC_ON_BB)
 
 PS_16S_BC_ON_BB_Pruned
 
 summarize_phyloseq(PS_16S_BC_ON_BB_Pruned)
 ```
+
+Check for Ubiquitous Fungi and remove them 
+```{r Removal and Reabundance - BCC, echo=FALSE, eval=TRUE, include=FALSE, cache=TRUE}
+
+top_taxa(PS_16S_BC_ON_BB_Pruned)
+
+classtaxa_PS_16S_BC_ON_BB_Pruned<- get_taxadf(obj=PS_16S_BC_ON_BB_Pruned, taxlevel=7)
+# The 30 most abundant taxonomy will be visualized by default (parameter `topn=30`). 
+TopTaxa_16S_BC_ON_BB_Pruned<- ggbartax(obj=PS_16S_BC_ON_BB_Pruned, 
+                   facetNames="Province", 
+                   plotgroup=TRUE, 
+                   topn=50) +
+  xlab(NULL) +
+  ylab("Relative abundance (%)") +
+  guides(fill= guide_legend(keywidth = 0.5, keyheight = 0.5, ncol=4))
+
+TopTaxa_16S_BC_ON_BB_Pruned
+
+PS_16S_BC_ON_BB_Pruned
+
+### RESUNME HERE
+
+#Take a closer look at the species we can remove by creating a taxa table
+Taxa_Table_16S_BC_ON_BB_Pruned <- as.data.frame(phyloseq::tax_table(PS_16S_BC_ON_BB_Pruned))
+Taxa_Table_16S_BC_ON_BB_Pruned
+
+# Removal of ubiqitous species and unknown phylums 
+PS_16S_BC_ON_BB_Pruned
+
+PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Pruned, Phylum!="Cyanobacteria")
+PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Phylum!="NA")
+PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Order !="Chloroplast")
+PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Species !="mitochondria")
+PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Species !="metagenome")
+PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Species !="Apis_florea")
+
+### Did removal work ###
+
+classtaxa_16S_BC_ON_BB_Filtered<- get_taxadf(obj=PS_16S_BC_ON_BB_Filtered, taxlevel=7)
+# The 30 most abundant taxonomy will be visualized by default (parameter `topn=30`). 
+TopTaxa_16S_BC_ON_BB_Filtered<- ggbartax(obj=classtaxa_16S_BC_ON_BB_Filtered, 
+                   facetNames="Province", 
+                   plotgroup=TRUE, 
+                   topn=50) +
+  xlab(NULL) +
+  ylab("Relative abundance (%)") +
+  guides(fill= guide_legend(keywidth = 0.5, keyheight = 0.5, ncol=4))
+
+TopTaxa_16S_BC_ON_BB_Filtered
+
+summarize_phyloseq(PS_16S_BC_ON_BB_Filtered)
+
+
+#prunved vs filteredd
+PS_16S_BC_ON_BB_Pruned
+PS_16S_BC_ON_BB_Filtered
+
+Taxa_Table_ITS1R_BC_ON_SF_Filtered<- as.data.frame(phyloseq::tax_table(PS_ITS1R_BC_ON_BB_Filtered))
+
+```
+
+Experimental diversity analysis 
+```{r experimental Diversity Analysis} 
+
+summarize_phyloseq(PS_16S_BC_ON_BB_Filtered)
+# Alpha diversity -> microbiotaprocess    #####
+
+alphaobj_Stonefruit<- get_alphaindex(PS_16S_BC_ON_BB_Filtered)
+
+withough_wild_Forage <- subset_samples(PS_16S_BC_ON_BB_Filtered, Plant!="Wild forage")
+
+alphaobj_Stonefruit_withoutwildforage <- get_alphaindex(withough_wild_Forage)
+
+withough_wild_Forage_metadata <- as.data.frame(meta(withough_wild_Forage))
+##### violon_plots (Status) ######
+
+Observe_status <- ggbox(alphaobj_Stonefruit, 
+                        geom="violin", 
+                        factorNames="Province",   
+                        compare = TRUE,
+                        testmethod = "wilcox.test",
+                        signifmap = TRUE,
+                        indexNames="Observe")+ 
+  labs(title = "Observed Alpha Diversity - Fungal/ITS1") + ylab("Observed Features") + xlab("Province")+
+  theme(aspect.ratio = 0.5)+
+  theme(text = element_text(size = 18))+
+  theme( legend.position="none")+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#000000",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+Observe_status
+
+# Try to see different sample type distributions in BC vs ON 
+
+BC_samples <- subset_samples(withough_wild_Forage, Province=="BC")
+ON_samples <- subset_samples(withough_wild_Forage, Province=="ON")
+
+meta(withough_wild_Forage)
+summarize_phyloseq(BC_samples)
+summarize_phyloseq(ON_samples)
+
+
+alphaobj_BC<- get_alphaindex(BC_samples)
+
+alphaobj_ON<- get_alphaindex(ON_samples)
+
+Observe_status <- ggbox(alphaobj_BC, 
+                        geom="violin", 
+                        factorNames="Province",   
+                        compare = TRUE,
+                        testmethod = "wilcox.test",
+                        signifmap = TRUE,
+                        indexNames="Observe")+ 
+  labs(title = "Alpha Observed - Fungal - BC") + ylab("Observed Features") + xlab("Province")+
+  theme(aspect.ratio = 0.5)+
+  theme(text = element_text(size = 18))+
+  theme( legend.position="none")+
+  theme(strip.background = element_rect(colour=NA, fill="grey"))+
+  scale_fill_manual(values=c("#990038", 
+                                      "#01AED9",
+                                      "#000000",
+                                      "#1B9E77", 
+                                      "#000033", 
+                                      "#FD9347"))
+
+plot_grid(Observe_status+theme(legend.position="none"),
+          align="vh",
+          hjust = -1,
+          vjust= 3.5,
+          ncol=1)
+
+
+```
+
+
 Diversity analysis 
 ```{r Alpha , Shannon and Pileou Analysis}
 
-PS_16S_BC_ON_BB_Pruned
+PS_16S_BC_ON_BB_Filtered
 # Alpha diversity -> microbiotaprocess    #####
 
 alphaobj_16S_BB<- get_alphaindex(PS_16S_BC_ON_BB_Pruned)
@@ -398,63 +577,7 @@ plot_grid(Observe_status+theme(legend.position="none"),
           ncol=1)
 
 ```
-Check for Ubiquitous Fungi and remove them 
-```{r Removal and Reabundance - BCC, echo=FALSE, eval=TRUE, include=FALSE, cache=TRUE}
 
-top_taxa(PS_16S_BC_ON_BB_Pruned)
-
-classtaxa_PS_16S_BC_ON_BB_Pruned<- get_taxadf(obj=PS_16S_BC_ON_BB_Pruned, taxlevel=7)
-# The 30 most abundant taxonomy will be visualized by default (parameter `topn=30`). 
-TopTaxa_16S_BC_ON_BB_Pruned<- ggbartax(obj=PS_16S_BC_ON_BB_Pruned, 
-                   facetNames="Province", 
-                   plotgroup=TRUE, 
-                   topn=50) +
-  xlab(NULL) +
-  ylab("Relative abundance (%)") +
-  guides(fill= guide_legend(keywidth = 0.5, keyheight = 0.5, ncol=4))
-
-TopTaxa_16S_BC_ON_BB_Pruned
-
-PS_16S_BC_ON_SF_Pruned
-
-### RESUNME HERE
-
-#Take a closer look at the species we can remove by creating a taxa table
-Taxa_Table_16S_BC_ON_BB_Pruned <- as.data.frame(phyloseq::tax_table(PS_16S_BC_ON_BB_Pruned))
-Taxa_Table_16S_BC_ON_BB_Pruned
-
-# Removal of ubiqitous species and unknown phylums 
-PS_16S_BC_ON_SF_Pruned
-
-PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Pruned, Phylum!="Cyanobacteria")
-PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Phylum!="NA")
-PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Order !="Chloroplast")
-PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Species !="mitochondria")
-PS_16S_BC_ON_BB_Filtered<-subset_taxa(PS_16S_BC_ON_BB_Filtered, Species !="metagenome")
-
-
-### Did removal work ###
-
-classtaxa_16S_BC_ON_BB_Filtered<- get_taxadf(obj=PS_16S_BC_ON_BB_Filtered, taxlevel=7)
-# The 30 most abundant taxonomy will be visualized by default (parameter `topn=30`). 
-TopTaxa_16S_BC_ON_BB_Filtered<- ggbartax(obj=classtaxa_16S_BC_ON_BB_Filtered, 
-                   facetNames="Province", 
-                   plotgroup=TRUE, 
-                   topn=50) +
-  xlab(NULL) +
-  ylab("Relative abundance (%)") +
-  guides(fill= guide_legend(keywidth = 0.5, keyheight = 0.5, ncol=4))
-
-TopTaxa_16S_BC_ON_BB_Filtered
-
-summarize_phyloseq(PS_16S_BC_ON_BB_Filtered)
-
-
-#prunved vs filteredd
-PS_16S_BC_ON_BB_Pruned
-PS_16S_BC_ON_BB_Filtered
-
-```
 
 General Heat Map 
 
@@ -468,7 +591,7 @@ Heatmap_16S_BB <- trans_abund$new(dataset = Meco_16S_BB,
 
                       taxrank = "Species", 
 
-                      ntaxa = 11)
+                      ntaxa = 14)
 
 Heatmap_16S_BB$plot_heatmap(facet = c("Province","Plant","SampleType"),
                 color_values = rev(RColorBrewer::brewer.pal(n = 11, 
@@ -491,3 +614,34 @@ Taxa_Table_16S_BC_ON_SF_Pruned
 
 ```
 
+```{r P. alvei }
+
+
+PS_16S_BC_ON_BB_Filtered_Paenibacillus<- subset_taxa(PS_16S_BC_ON_BB_Filtered, Order == "Paenibacillales")
+
+Taxa_Table_PS_16S_BC_ON_SF_Filtered<- as.data.frame(phyloseq::tax_table(PS_16S_BC_ON_SF_Filtered))
+
+Taxa_Table_PS_16S_BC_ON_SF_Filtered<- as.data.frame(phyloseq::tax_table(PS_16S_BC_ON_BB_Filtered))
+
+as.data.frame(phyloseq::tax_table(PS_16S_BC_ON_BB_Filtered))
+
+Taxa_Table_PS_16S_BC_ON_SF_Filtered
+plot_tree(tax_glom(PS_16S_BC_ON_BB_Filtered_Paenibacillus, 
+                   taxrank="Species"),
+          method = "sampledodge",
+          ladderize="left",
+          nodelabf=nodeplotblank, 
+          color="SampleType", 
+          label.tips="Species", 
+          text.size=3, 
+          base.spacing=0.01,
+          justify="jagged",
+          shape="Province",
+          size="abundance",
+          plot.margin =0.9)+
+  scale_size_continuous(range = c(0.0001, 4))
+
+
+
+
+```
