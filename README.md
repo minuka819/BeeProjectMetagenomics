@@ -1,7 +1,7 @@
 # Metagenomics Analysis on Bee and Pollen Samples for Stone Fruit and Blueberry Ecosystems in Canada
 
 This project aims at performing analysis on Qiime2 Classified outputs through the Phyloseq Package.
-The pipeline is broken down into 3 chapters which can be viewed as github md files.
+The pipeline is broken down into chapters which can be viewed as PDF files.
 
 ## Pre-Processing
 - The analysis is based on ION torrent data that has been classified through UNITE (fungal) and SILVA (bacterial) via Qiime2
